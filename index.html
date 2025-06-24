@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cirurgias Genitais Femininas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Basic reset for consistency across browsers */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth; /* Smooth scrolling for anchors */
+    }
+
+    /* Body styles */
+    body {
+      font-family: 'Inter', sans-serif; /* Inter font for a modern, clean look */
+      background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%); /* Soft gradient background in pink tones */
+      color: #6a5c7a; /* Soft grayish-purple text color */
+      line-height: 1.7; /* Comfortable line spacing */
+      min-height: 100vh; /* Minimum screen height */
+      overflow-x: hidden; /* Prevents unwanted horizontal scrolling */
+      padding-top: 85px; /* Space for fixed header */
+    }
+
+    body.modal-active {
+        overflow: hidden; /* Prevents body scrolling when image modal is active */
+    }
+
+    /* Fixed Header Styles */
+    header {
+      position: fixed; /* Fixed header at the top of the page */
+      top: 0;
+      width: 100%;
+      background: linear-gradient(to right, #ffebee 0%, #fde6f0 100%); /* Very light pink gradient for header */
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1); /* More diffused shadow for depth */
+      z-index: 1000; /* Ensures the header stays above other elements */
+      min-height: 75px; /* Minimum header height */
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease-in-out; /* Optimized transition for header */
+      padding: 10px 0; /* Vertical padding for header */
+      border-bottom: 1px solid #f8d7e0; /* Subtle bottom border */
+    }
+
+    /* Navigation Styles */
+    nav {
+      max-width: 1200px; /* Slightly wider max-width for navigation */
+      margin: 0 auto; /* Centers the navigation */
+      padding: 0 2.5rem; /* Larger horizontal padding */
+      width: 100%;
+      display: flex;
+      justify-content: space-between; /* Logo left, links right */
+      align-items: center;
+      flex-wrap: wrap; /* Allows content to wrap on smaller screens */
+    }
+
+    nav .logo {
+      font-family: 'Playfair Display', serif; /* Elegant font for logo */
+      font-weight: 700; /* Bold */
+      font-size: 2.1rem; /* Logo size */
+      color: #b39ddb; /* Soft purple for logo */
+      letter-spacing: 0.8px; /* Slightly increased letter spacing for elegance */
+      cursor: default;
+      white-space: nowrap; /* Prevents logo from wrapping */
+      padding: 5px 0; /* Padding for spacing */
+      text-shadow: 0.5px 0.5px 1px rgba(0, 0, 0, 0.03); /* Very soft text shadow */
+    }
+
+    nav ul {
+      list-style: none; /* Removes list markers */
+      display: flex;
+      gap: 1.5rem; /* Spacing between list items */
+      flex-wrap: wrap; /* Allows links to wrap */
+      justify-content: flex-end; /* Aligns links to the right on desktop */
+    }
+
+    nav ul li {
+      white-space: nowrap; /* Prevents items from wrapping */
+      flex-shrink: 0; /* Prevents items from shrinking */
+    }
+
+    nav ul li a {
+      text-decoration: none; /* Removes underline */
+      color: #8e24aa; /* Purple for links */
+      font-weight: 500;
+      padding: 0.6rem 1.2rem; /* Larger padding for navigation buttons */
+      border-radius: 25px; /* More rounded borders */
+      transition: background-color 0.3s ease-out, color 0.3s ease-out, transform 0.2s ease-out, box-shadow 0.3s ease-out; /* Optimized transitions */
+      display: inline-block;
+      white-space: nowrap;
+      position: relative; /* For underline effect */
+      overflow: hidden; /* For hover glow effect */
+    }
+
+    nav ul li a::before { /* Subtle underline effect */
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #f48fb1; /* Soft pink for underline */
+      transform: scaleX(0);
+      transform-origin: bottom right;
+      transition: transform 0.3s ease-out;
+    }
+
+    nav ul li a:hover::before {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    nav ul li a.active {
+      background: #f8bbd0; /* Soft pink when active */
+      color: #6a1b9a; /* Darker purple for active/hover text */
+      transform: translateY(-2px) scale(1.02); /* Slight elevation and scale effect */
+      box-shadow: 0 4px 10px rgba(171, 71, 188, 0.1); /* Soft shadow on hover */
+    }
+    nav ul li a.active::before { /* Ensures active underline is visible */
+        transform: scaleX(1);
+        background-color: #d81b60; /* Stronger pink for active underline */
+    }
+
+    nav ul li a:hover::after { /* Subtle glow effect */
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.2);
+        transform: skewX(-20deg);
+        transition: all 0.7s ease-out;
+    }
+    nav ul li a:hover::after {
+        left: 100%;
+    }
+
+
+    /* Main Content Styles */
+    main {
+      max-width: 1100px; /* Max-width for main content */
+      margin: 0 auto 60px; /* Centers and adds bottom margin */
+      padding: 40px 2.5rem; /* Adjusted top and horizontal padding */
+      border-radius: 30px; /* More rounded borders */
+      background: #ffffff; /* Pure white background for content */
+      box-shadow: 0 12px 50px rgba(0, 0, 0, 0.1); /* Even more pronounced, diffused shadow for main content */
+    }
+
+    section {
+      margin-bottom: 90px; /* More space between sections */
+      opacity: 0; /* Starts invisible for animation */
+      transform: translateY(40px); /* Starts slightly below for animation */
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out; /* Optimized transition, slightly faster */
+      scroll-margin-top: 100px; /* Adjusts top margin to compensate for fixed header on scroll */
+      border-radius: 20px; /* Rounded borders for sections */
+      padding: 30px; /* Adds internal padding to sections */
+      background: #ffffff; /* Ensures section has its own white background */
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); /* Inner shadow for sections, more diffused */
+      position: relative; 
+      overflow: hidden; /* Ensures child element animations don't overflow */
+    }
+
+    section.visible {
+      opacity: 1; /* Becomes visible */
+      transform: translateY(0); /* Moves to original position */
+    }
+    /* Extra animation for elements within visible sections */
+    section.visible .card,
+    section.visible h2,
+    section.visible p,
+    section.visible ul {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInSlideUp 0.7s ease-out forwards; 
+        animation-delay: 0.2s; /* Slightly reduced delay */
+    }
+    section.visible .card:nth-child(even) { /* Staggered delay for even cards */
+        animation-delay: 0.3s;
+    }
+    section.visible .card:nth-child(odd) { /* Staggered delay for odd cards */
+        animation-delay: 0.4s;
+    }
+
+    @keyframes fadeInSlideUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+
+    h1, h2 {
+      color: #880e4f; /* Deep rose for main titles */
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: 0.8px; /* Slightly increased letter spacing */
+      text-transform: uppercase; 
+      font-family: 'Playfair Display', serif; /* Elegant font for titles */
+    }
+
+    h1 {
+      font-size: 2.8rem; 
+      margin-bottom: 2.5rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+      font-size: 2.2rem; 
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid #f48fb1; /* Soft pink bottom border */
+      display: inline-block; 
+      padding-bottom: 8px;
+      border-radius: 2px;
+      color: #9c27b0; /* Soft purple for h2 */
+      display: block; 
+      text-align: center;
+      transition: color 0.3s ease, border-color 0.3s ease, letter-spacing 0.3s ease; /* Added letter-spacing transition */
+    }
+    
+    h2:first-letter {
+        color: #d81b60; /* Stronger pink for first letter of H2 */
+    }
+    h2:hover { 
+        color: #d81b60;
+        border-color: #d81b60; /* Border also changes color on hover */
+        letter-spacing: 1.2px; /* Slight expansion on hover */
+    }
+
+
+    p {
+      font-size: 1.1rem; 
+      margin-bottom: 1.2rem;
+      text-align: justify;
+      color: #6a5c7a; /* Neutral and soft text color for body */
+    }
+
+    /* Cards for each surgery */
+    .card {
+      background: #ffffff; 
+      padding: 25px 30px; 
+      border-radius: 18px; /* More rounded borders */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* More diffused shadow */
+      transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; /* Optimized transition */
+      display: flex; 
+      flex-direction: column; 
+      gap: 20px; 
+      align-items: center; 
+      margin-bottom: 35px; 
+      border: 1px solid #f8bbd0; /* Soft pink border */
+      overflow: hidden; 
+    }
+
+    .card:hover {
+      transform: translateY(-12px) scale(1.008); /* Slightly increased elevation and scale */
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+    }
+
+    .card img {
+      width: 100%; 
+      height: 250px; /* Slightly taller images for cards */
+      border-radius: 15px; /* Rounded borders */
+      object-fit: cover; 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Shadow for image */
+      flex-shrink: 0; 
+      transition: transform 0.3s ease-out; /* Optimized transition for image hover */
+    }
+
+    .card:hover img { 
+        transform: scale(1.07); /* Subtle zoom effect, slightly reduced */
+    }
+
+    .card div {
+      flex: 1; 
+      text-align: center; 
+    }
+
+    .card .focus-point {
+        font-weight: 600; /* Lighter weight */
+        color: #d81b60; /* Deep rose for highlight */
+        font-size: 1.25em; /* Focus point size */
+        margin-bottom: 12px;
+        display: block; 
+        text-shadow: none; 
+        font-family: 'Playfair Display', serif; /* Elegant font for focus points */
+    }
+
+    /* Specific styles for post-operative care list */
+    .card-list-style {
+      flex-direction: column; 
+      align-items: flex-start; 
+      text-align: left; 
+    }
+    .card-list-style ul {
+      width: 100%; 
+    }
+    .card-list-style ul li {
+      text-align: left; 
+      margin-bottom: 8px; 
+      color: #7a6e8a; /* Text color for list */
+    }
+
+    ul {
+      padding-left: 1.8rem; /* Spacing for list markers */
+      margin-top: 0.6rem;
+      color: #7a6e8a;
+      font-size: 1.05rem;
+    }
+
+    /* Game Section Styles */
+    #game-section {
+        background: #fdf6f8; 
+        padding: 45px; 
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08); 
+        text-align: center;
+    }
+
+    #game-container { 
+        max-width: 650px; 
+        margin: 0 auto; 
+        padding: 30px; 
+        background: #fff; 
+        border-radius: 18px;
+        box-shadow: inset 0 3px 10px rgba(0,0,0,0.05), 0 5px 15px rgba(0,0,0,0.08); /* Softer inner and outer shadow */
+        text-align: center;
+        border: 1px solid #f8bbd0; 
+    }
+
+    #game-section h2 {
+        color: #880e4f;
+        margin-bottom: 30px;
+        font-size: 2.3em;
+    }
+
+    /* Player name input section styles */
+    #player-names-input {
+        margin-bottom: 25px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+    #player-names-input p {
+        font-weight: 500;
+        color: #7b1fa2;
+        font-size: 1.15em;
+        margin-bottom: 8px;
+        text-align: center;
+    }
+    #player-names-input input[type="text"] {
+        padding: 12px 15px;
+        border: 1px solid #ce93d8;
+        border-radius: 10px;
+        font-size: 1em;
+        width: 80%; 
+        max-width: 300px;
+        box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        color: #5d405d;
+    }
+    #player-names-input input[type="text"]:focus {
+        border-color: #ab47bc;
+        box-shadow: 0 0 8px rgba(171, 71, 188, 0.4);
+        outline: none;
+    }
+
+
+    #question-clue, #options-container, #feedback, #next-question-btn, #game-progress, #restart-game-btn, #player-names-input {
+        display: none; /* Initially hidden, except player-names-input which will be manipulated by JS */
+    }
+    
+    /* New: Current score display during game */
+    #current-player-score {
+        font-size: 1.1em;
+        color: #880e4f;
+        margin-top: 10px;
+        font-weight: 600;
+        display: none; /* Controlled by JS */
+    }
+
+    #start-game-btn {
+        background: linear-gradient(to right, #d81b60, #f48fb1); /* Pink gradient for start button */
+        color: white;
+        border: none;
+        padding: 18px 40px; 
+        border-radius: 35px; 
+        font-size: 1.3em; 
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, filter 0.3s ease; /* Added filter for glow */
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        display: block; 
+        margin: 25px auto; 
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative; /* For ripple effect */
+        overflow: hidden;
+    }
+
+    #start-game-btn:hover {
+        background: linear-gradient(to right, #f48fb1, #d81b60); /* Invert gradient on hover */
+        transform: translateY(-4px) scale(1.01); /* Elevation and slight scale */
+        box-shadow: 0 8px 20px rgba(0,0,0,0.25); 
+        filter: brightness(1.1) drop-shadow(0 0 10px rgba(216, 27, 96, 0.5)); /* Subtle glow */
+    }
+    /* Ripple effect for buttons */
+    .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.7);
+        animation: ripple-effect 0.6s linear forwards;
+        transform: scale(0);
+        pointer-events: none;
+        opacity: 0;
+    }
+    @keyframes ripple-effect {
+        to {
+            transform: scale(2.5);
+            opacity: 0;
+        }
+    }
+
+
+    #question-clue {
+        background: #fdf6f8; /* Very soft background for clue */
+        padding: 22px;
+        border-radius: 12px;
+        font-size: 1.2em;
+        font-weight: 500;
+        color: #5d405d;
+        margin-bottom: 30px;
+        box-shadow: inset 0 1px 4px rgba(0,0,0,0.04);
+        border: 1px solid #f8bbd0; 
+    }
+
+    #game-progress { 
+        font-size: 1.05em; 
+        color: #880e4f;
+        margin-top: -18px; 
+        margin-bottom: 20px;
+        font-weight: 600;
+        display: block; 
+    }
+
+    #options-container {
+        display: grid;
+        grid-template-columns: 1fr; 
+        gap: 18px; 
+        margin-bottom: 25px;
+    }
+
+    .option-btn {
+        background: #f8bbd0; /* Soft pink for option buttons */
+        color: #6a1b9a; /* Purple for text */
+        border: none;
+        padding: 16px 30px; 
+        border-radius: 30px; 
+        font-size: 1.1em; 
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease-out; /* Optimized transition */
+        box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+        text-transform: none; 
+        letter-spacing: 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .option-btn:hover {
+        background: #f48fb1; /* Slightly more saturated pink on hover */
+        transform: translateY(-3px) scale(1.005); /* Slightly reduced elevation */
+        box-shadow: 0 5px 12px rgba(0,0,0,0.15); /* Slightly reduced shadow */
+    }
+
+    .option-btn:disabled {
+        background: #ddd;
+        cursor: not-allowed;
+        box-shadow: none;
+        transform: none;
+        opacity: 0.6;
+        color: #888;
+    }
+    
+    /* New: Score pop-up animation */
+    .score-popup {
+        position: absolute;
+        bottom: 50%; /* Adjust as needed */
+        left: 50%;
+        transform: translate(-50%, 0);
+        background-color: rgba(67, 160, 71, 0.8); /* Greenish background */
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 1.2em;
+        font-weight: bold;
+        opacity: 0;
+        animation: fadeOutUp 1s ease-out forwards;
+        pointer-events: none; /* Allows clicks to pass through */
+    }
+
+    @keyframes fadeOutUp {
+        0% {
+            opacity: 1;
+            transform: translate(-50%, 0);
+        }
+        100% {
+            opacity: 0;
+            transform: translate(-50%, -50px);
+        }
+    }
+
+
+    #feedback {
+        font-size: 1.15em; 
+        font-weight: bold;
+        margin-bottom: 25px;
+        min-height: 30px; 
+        text-shadow: none; 
+    }
+
+    .feedback-correct {
+        color: #43a047; /* Softer green for correct */
+    }
+
+    .feedback-incorrect {
+        color: #e53935; /* Softer red for incorrect */
+    }
+
+    #next-question-btn, #restart-game-btn {
+        background: linear-gradient(to right, #d81b60, #f48fb1); /* Pink gradient for start button */
+        color: white;
+        border: none;
+        padding: 14px 30px; 
+        border-radius: 28px;
+        font-size: 1.05em;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, filter 0.3s ease; /* Added filter for glow */
+        box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+        text-transform: uppercase;
+        position: relative;
+        overflow: hidden;
+    }
+
+    #next-question-btn:hover, #restart-game-btn:hover {
+        background: linear-gradient(to right, #f48fb1, #d81b60); /* Invert gradient on hover */
+        transform: translateY(-3px) scale(1.005); /* Slightly reduced elevation */
+        box-shadow: 0 5px 12px rgba(0,0,0,0.15); /* Slightly reduced shadow */
+        filter: brightness(1.1) drop-shadow(0 0 8px rgba(216, 27, 96, 0.4)); /* Subtle glow */
+    }
+
+    /* Final game score display styles */
+    #score-display {
+        display: none; 
+        margin-top: 25px;
+        padding: 25px;
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+        text-align: left; 
+        color: #5d405d;
+        border: 1px solid #f8bbd0;
+    }
+    #score-display h3 {
+        color: #880e4f;
+        margin-bottom: 15px;
+        font-size: 1.5em;
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+    }
+    #score-display ul {
+        list-style-type: none; /* Removed default bullets */
+        padding-left: 0; /* Removed default padding */
+        color: #7b1fa2;
+        text-align: center; /* Center the list items */
+    }
+    #score-display ul li {
+        margin-bottom: 10px;
+        font-size: 1.1em;
+        font-weight: 400;
+        animation: fadeInListItem 0.5s ease-out forwards; /* Separate animation for list items */
+        opacity: 0;
+        transform: translateX(-20px);
+        background-color: #fce4ec; /* Light pink background for each score item */
+        padding: 8px 15px;
+        border-radius: 20px;
+        box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+        display: inline-block; /* Allows horizontal alignment */
+        width: auto;
+        min-width: 150px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    #score-display ul li:nth-child(1) { animation-delay: 0.1s; background-color: #f8bbd0; font-weight: 600; } /* Highlight winner */
+    #score-display ul li:nth-child(2) { animation-delay: 0.2s; }
+    #score-display ul li:nth-child(3) { animation-delay: 0.3s; }
+    #score-display ul li:nth-child(4) { animation-delay: 0.4s; }
+    #score-display ul li:nth-child(5) { animation-delay: 0.5s; }
+
+    @keyframes fadeInListItem {
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    
+    /* New: Trophy icon for the winner */
+    .winner-trophy::before {
+        content: '🏆 '; /* Trophy emoji */
+        display: inline-block;
+        margin-right: 5px;
+        font-size: 1.2em;
+        vertical-align: middle;
+    }
+
+    /* Animation for the winner in the final score */
+    .winner-trophy {
+        animation: pulseGlow 1.5s infinite alternate ease-in-out;
+    }
+
+    @keyframes pulseGlow {
+        0% {
+            box-shadow: 0 0 8px rgba(255, 223, 0, 0.6), 0 1px 5px rgba(0,0,0,0.08); /* Gold glow */
+            transform: scale(1);
+        }
+        50% {
+            box-shadow: 0 0 25px rgba(255, 223, 0, 0.9), 0 1px 12px rgba(0,0,0,0.15); /* Brighter gold glow */
+            transform: scale(1.02);
+        }
+        100% {
+            box-shadow: 0 0 8px rgba(255, 223, 0, 0.6), 0 1px 5px rgba(0,0,0,0.08);
+            transform: scale(1);
+        }
+    }
+
+
+    #score-display ul li span {
+        font-weight: bold;
+        color: #d81b60;
+    }
+
+
+    /* Back to Top Button */
+    #scrollToTopBtn {
+        display: none; 
+        position: fixed; 
+        bottom: 30px; 
+        right: 30px; 
+        z-index: 99; 
+        border: none;
+        outline: none;
+        background: #d81b60; /* Deep rose for the button */
+        color: white;
+        cursor: pointer;
+        padding: 18px 22px; 
+        border-radius: 50%; 
+        font-size: 1.6em; 
+        box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+        transition: all 0.3s ease-out; /* Optimized transition */
+        line-height: 1; 
+    }
+
+    #scrollToTopBtn:hover {
+        background: #c2185b; /* Darker rose on hover */
+        transform: translateY(-4px) scale(1.05) rotate(8deg); /* Slightly reduced scale and rotation */
+        box-shadow: 0 7px 18px rgba(0,0,0,0.3); /* Slightly reduced shadow */
+    }
+
+    /* Footer Styles */
+    footer {
+      text-align: center;
+      padding: 30px 10px; 
+      color: #7b1fa2; 
+      font-size: 1rem;
+      border-top: 1px solid #f8d7e0; 
+      background: #fdf6f8; 
+    }
+
+    /* Responsiveness */
+    @media (max-width: 768px) { 
+      body {
+        padding-top: 75px; 
+      }
+      header {
+        min-height: 65px;
+      }
+      nav .logo {
+        font-size: 1.8rem;
+      }
+      nav ul {
+        gap: 1rem;
+        justify-content: center; 
+      }
+      nav ul li a {
+        padding: 0.5rem 1rem;
+        font-size: 0.9em;
+      }
+      main {
+        padding: 25px 1.5rem;
+      }
+      h1 {
+        font-size: 2.3rem;
+      }
+      h2 {
+        font-size: 1.8rem;
+      }
+      p {
+        font-size: 1em;
+      }
+      .card {
+        padding: 20px;
+        gap: 15px;
+      }
+      .card img {
+        height: 200px;
+      }
+      #game-container {
+        padding: 20px;
+      }
+      #player-names-input input[type="text"] {
+          width: 90%;
+      }
+    }
+
+    @media (max-width: 480px) { 
+      body {
+        padding-top: 110px; 
+      }
+      nav {
+        flex-direction: column; 
+        align-items: center; 
+      }
+      nav .logo {
+        margin-bottom: 10px; 
+      }
+      nav ul {
+        flex-direction: column; 
+        align-items: center; 
+        width: 100%; 
+      }
+      nav ul li a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8em;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      h2 {
+        font-size: 1.6rem;
+      }
+      .option-btn {
+        font-size: 0.95em;
+        padding: 12px 20px;
+      }
+      #scrollToTopBtn {
+          bottom: 15px;
+          right: 15px;
+          padding: 14px 17px;
+          font-size: 1.3em;
+      }
+      /* Ensure score display list items stack properly on small screens */
+      #score-display ul li {
+          width: 90%;
+          margin: 0 auto 10px; /* Center and add vertical margin */
+          display: block;
+      }
+    }
+
+    /* Image Modal (Lightbox) Styles */
+    #image-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7); /* Slightly lighter and softer overlay for contrast */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999; 
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s ease-out, visibility 0.4s ease-out; /* Optimized transition */
+    }
+
+    #image-modal.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    #modal-image {
+        max-width: 90%; 
+        max-height: 90%;
+        object-fit: contain; 
+        border-radius: 15px; 
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); /* Slightly reduced shadow */
+        transform: scale(0.8); /* Starts smaller for a more dramatic "pop-in" effect */
+        transition: transform 0.3s ease-out; /* Optimized transition */
+    }
+    #image-modal.active #modal-image {
+        transform: scale(1); /* Expands to normal size */
+    }
+
+    #modal-close-btn {
+        position: absolute;
+        top: 25px; 
+        right: 30px; 
+        color: white;
+        font-size: 2.8em; 
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: color 0.2s ease, transform 0.2s ease;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.5); 
+    }
+
+    #modal-close-btn:hover {
+        color: #ffccbc; /* Light peach on hover for accent */
+        transform: rotate(180deg) scale(1.05); /* Slightly reduced scale */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">Cirurgias Genitais Femininas</div>
+      <ul>
+        <li><a href="#introducao" class="active">Introdução</a></li>
+        <li><a href="#vaginoplastia">Tipos de Cirurgias</a></li>
+        <li><a href="#papel-tecnico">Papel do Técnico</a></li>
+        <li><a href="#cuidados-enfermagem">Cuidados de Enfermagem</a></li>
+        <li><a href="#complicacoes">Complicações</a></li>
+        <li><a href="#game">Adivinhe a Cirurgia!</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="introducao" class="visible">
+      <h2>Introdução às Cirurgias Genitais Femininas</h2>
+      <div class="card">
+        <img src="https://www.cirurgiaestetica.com.br/wp-content/uploads/2018/10/cirurgia-intima-mulheres.jpg.webp" alt="Profissional de saúde feminina examinando paciente, simbolizando o cuidado em saúde da mulher." />
+        <div>
+          <span class="focus-point">🌟 Desvendando um Campo Essencial da Saúde da Mulher 🌟</span>
+          <p>As <strong>Cirurgias Genitais Femininas (CGFs)</strong> compreendem um conjunto de procedimentos cirúrgicos ginecológicos focados na região genital feminina, abordando desde aspectos funcionais e de saúde até questões estéticas e de bem-estar psicológico. Nesta apresentação, mergulharemos nos diversos tipos de CGFs, suas indicações clínicas mais comuns e a importância de uma abordagem informada e humanizada.</p>
+          <p>É fundamental compreender que estas cirurgias não se limitam apenas à estética, mas muitas vezes são cruciais para a melhora da qualidade de vida, alívio de desconfortos físicos e emocionais, e reconstrução em casos de anomalias congênitas ou traumas. Nosso objetivo é desmistificar o tema e ressaltar o papel multidisciplinar no cuidado à paciente.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="vaginoplastia">
+      <h2>Tipos de Cirurgias Genitais Femininas</h2>
+      <p>Conheça os principais procedimentos e suas indicações:</p>
+
+      <div class="card">
+        <img src="https://dramarianaamalia.com.br/wp-content/uploads/2024/02/Imagem-do-WhatsApp-de-2024-02-23-as-10.07.09_727b1365-1.jpg" alt="Ilustração da anatomia da cavidade vaginal, destacando áreas de reconstrução em uma vaginoplastia." />
+        <div>
+          <span class="focus-point">✨ VAGINOPLASTIA: Reconstrução e Rejuvenescimento Vaginal ✨</span>
+          <p>A <strong>Vaginoplastia</strong>, ou Plástica da Cavidade Vaginal, é um procedimento que visa reconstruir a anatomia e a funcionalidade do canal vulvo-vaginal. É comumente indicada para mulheres que experimentam frouxidão vaginal, um problema que pode surgir após múltiplos partos normais, envelhecimento natural ou perda significativa de peso. O principal objetivo é o **estreitamento da vagina**, melhorando o tônus muscular e a sensação durante a relação sexual, além de corrigir prolapsos leves de órgãos pélvicos. Também pode ser procurada para fins de rejuvenescimento vaginal e para aumentar a autoestima e o conforto íntimo.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="" alt="Representação 3D da anatomia feminina com foco no clitóris, ilustrando o campo de atuação da clitoroplastia." />
+        <div>
+          <span class="focus-point">💖 CLITOROPLASTIA: Remodelagem com Preservação da Sensibilidade 💖</span>
+          <p>A <strong>Clitoroplastia</strong> é uma cirurgia altamente especializada que visa remodelar o clitóris. As indicações mais comuns incluem a redução do tamanho do clitóris (em casos de hipertrofia clitoriana, que pode causar desconforto físico, irritação com roupas e impacto na autoestima), ou a correção de anomalias congênitas. O grande desafio e prioridade deste procedimento é **preservar a sensibilidade e a função sexual** intactas. A cirurgia é realizada com extrema delicadeza, minimizando o impacto nos nervos e vasos sanguíneos cruciais para o prazer sexual, buscando uma harmonia estética e funcional para a paciente.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://grupoelas.com.br/wp-content/uploads/2021/05/himenoplastia-2.jpg" alt="Ilustração da anatomia vaginal destacando o hímen e suas estruturas, relevante para o procedimento de himenoplastia." />
+        <div>
+          <span class="focus-point">🌸 HIMENOPLASTIA: Reconstrução do Hímen 🌸</span>
+          <p>A <strong>Himenoplastia</strong> é a reconstrução cirúrgica do hímen, uma membrana que pode ter sido rompida por diversas razões, não apenas relacionadas à atividade sexual. Este procedimento é frequentemente procurado por mulheres por motivos culturais, religiosos, sociais ou pessoais, que buscam restaurar a integridade do hímen. A técnica envolve a sutura cuidadosa dos remanescentes himenais ou tecidos próximos para recriar uma membrana que se assemelhe ao hímen original. É um procedimento de curta duração e pode ser realizado sob anestesia local, oferecendo às pacientes a restauração física e emocional desejada.</p>
+        </div>
+      </div>
+
+      <div class="card" id="ninfoplastia">
+        <img src="https://cdn-ilahpph.nitrocdn.com/AHdZesSudTWvvLsyomlAkDpdNIwwPTvr/assets/images/optimized/rev-67e93e6/drafernandatorras.com.br/wp-content/uploads/2025/03/ninfoplastia-valor.webp" alt="Ilustração de antes e depois da Ninfoplastia (Labioplastia), mostrando a redução dos pequenos lábios." />
+        <div>
+          <span class="focus-point">🌟 NINFOPLASTIA (Labioplastia): Remodelagem dos Pequenos Lábios 🌟</span>
+          <p>A <strong>Ninfoplastia</strong>, também amplamente conhecida como Labioplastia, é um dos procedimentos de Cirurgia Genital Feminina mais procurados. Seu principal objetivo é **reduzir o tamanho ou corrigir a assimetria dos pequenos lábios vaginais**. Este excesso de tecido pode causar desconforto físico (atrito com roupas, dor durante atividades físicas ou sexuais) e impactar a autoestima da mulher.</p>
+          <p>A cirurgia visa proporcionar um contorno mais harmonioso e confortável, melhorando a qualidade de vida e a confiança. É um procedimento que exige precisão para manter a funcionalidade e a sensibilidade da região.</p>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="papel-tecnico">
+      <h2>O Papel do Técnico de Enfermagem no Perioperatório</h2>
+      <div class="card card-list-style">
+        <span class="focus-point">🤝 AÇÕES ESSENCIAIS DO TÉCNICO DE ENFERMAGEM EM CGFs 🤝</span>
+        <p>O técnico de enfermagem desempenha um papel crucial em todas as fases do perioperatório (pré, intra e pós-operatório), garantindo a segurança e o bem-estar da paciente submetida a CGFs.</p>
+        <ul>
+          <li><strong>Pré-operatório:</strong>
+            <ul>
+              <li>Preparar a paciente: verificar sinais vitais, auxiliar na troca de roupa, orientar sobre o jejum.</li>
+              <li>Checar prontuário e lista de verificação de segurança cirúrgica.</li>
+              <li>Confortar e acalmar a paciente, oferecendo suporte emocional.</li>
+              <li>Realizar a tricotomia (remoção de pelos) da área cirúrgica, se indicado e seguindo protocolo.</li>
+            </ul>
+          </li>
+          <li><strong>Intraoperatório:</strong>
+            <ul>
+              <li>Auxiliar na montagem da sala cirúrgica e na organização dos materiais e equipamentos.</li>
+              <li>Apoiar a equipe cirúrgica na paramentação.</li>
+              <li>Manter a assepsia do campo cirúrgico.</li>
+              <li>Monitorar a paciente (sinais vitais, nível de consciência) sob supervisão do enfermeiro.</li>
+              <li>Fornecer materiais estéreis ao cirurgião, conforme solicitado.</li>
+            </ul>
+          </li>
+          <li><strong>Pós-operatório:</strong>
+            <ul>
+              <li>Monitorar a recuperação na sala de recuperação pós-anestésica (SRPA): sinais vitais, nível de dolor, sangramentos.</li>
+              <li>Administrar medicações conforme prescrição (analgésicos, antieméticos).</li>
+              <li>Auxiliar na mobilização e conforto da paciente.</li>
+              <li>Observar a área cirúrgica para sinais de complicações iniciais.</li>
+              <li>Garantir o conforto térmico e a privacidade da paciente.</li>
+            </ul>
+          </li>
+        </ul>
+        <p>A atenção e o cuidado do técnico de enfermagem são vitais para a segurança e a recuperação bem-sucedida das pacientes.</p>
+      </div>
+    </section>
+
+    <section id="cuidados-enfermagem">
+      <h2>Cuidados de Enfermagem Específicos</h2>
+      <div class="card card-list-style">
+        <span class="focus-point">🩹 CUIDADOS HOLÍSTICOS PARA UMA RECUPERAÇÃO SEGURA E EFICAZ 🩹</span>
+        <p>Os cuidados de enfermagem em CGFs são cruciais e abrangem diversas áreas para assegurar a recuperação completa e o bem-estar da paciente:</p>
+        <ul>
+          <li><strong>Higiene e Prevenção de Infecções:</strong>
+            <ul>
+              <li>Manter higiene adequada da área genital com água morna e sabão neutro, conforme orientação médica, evitando fricção excessiva.</li>
+              <li>Realizar curativos conforme a técnica asséptica e frequência indicada, observando sinais de infecção.</li>
+            </ul>
+          </li>
+          <li><strong>Conforto e Mobilização:</strong>
+            <ul>
+              <li>Evitar o uso de roupas apertadas ou justas para prevenir irritações e facilitar a circulação na área operada.</li>
+              <li>Auxiliar na mobilização precoce (caminhada leve) conforme liberação médica, prevenindo complicações como trombose.</li>
+            </ul>
+          </li>
+          <li><strong>Manejo da Dor e Medicação:</strong>
+            <ul>
+              <li>Utilizar medicações prescritas (analgésicos, anti-inflamatórios, antibióticos) conforme orientação médica para controle da dor e prevenção de infecções.</li>
+              <li>Monitorar a eficácia da medicação e relatar ao enfermeiro/médico qualquer dolor persistente ou intensa.</li>
+            </ul>
+          </li>
+          <li><strong>Dieta e Hidratação:</strong>
+            <ul>
+              <li>Manter uma dieta equilibrada e hidratação adequada para auxiliar no processo de recuperação do corpo e funcionamento intestinal.</li>
+            </ul>
+
+          </li>
+          <li><strong>Restrições de Atividade:</strong>
+            <ul>
+              <li>Abster-se de relações sexuais pelo período recomendado pelo cirurgião (geralmente 6 a 8 semanas ou mais), para garantir a cicatrização completa e evitar complicações.</li>
+              <li>Evitar esforço físico intenso, levantamento de peso e atividades que possam aumentar a pressão abdominal, como agachamentos ou abdominais.</li>
+            </ul>
+          </li>
+          <li><strong>Acompanhamento e Monitoramento:
+            <ul>
+              <li>Comparecer a todas as consultas de retorno para acompanhamento da cicatrização e remoção de pontos, se necessário.</li>
+              <li>Observar atentamente quaisquer sinais de complicação: vermelhidão intensa, dolor crescente, inchaço excessivo, secreção purulenta, febre, náuseas persistentes, dificuldade para urinar/evacuar, e comunicar o médico/enfermeiro imediatamente.</li>
+            </ul>
+          </li>
+        </ul>
+        <p>O cuidado de enfermagem é fundamental para uma recuperação segura e o retorno da paciente às suas atividades diárias com qualidade de vida.</p>
+      </div>
+    </section>
+
+    <section id="complicacoes">
+      <h2>Complicações e Intercorrências Possíveis</h2>
+      <div class="card card-list-style">
+        <span class="focus-point">⚠️ SINAIS DE ALERTA E CUIDADOS NECESSÁRIOS ⚠️</span>
+        <p>Embora as CGFs sejam geralmente seguras, como qualquer procedimento cirúrgico, elas podem apresentar complicações e intercorrências. O reconhecimento precoce é fundamental para um bom prognóstico.</p>
+        <ul>
+          <li><strong>Infecção:</strong>
+            <ul>
+              <li>Sinais: vermelhidão, inchaço, calor local, dor intensa, secreção purulenta na incisão, febre.</li>
+              <li>Cuidados: higiene rigorosa, uso de antibióticos conforme prescrição.</li>
+            </ul>
+          </li>
+          <li><strong>Hemorragia/Hematoma:</strong>
+            <ul>
+              <li>Sinais: sangramento excessivo na incisão, formação de inchaço arroxeado ou endurecido, dolor intensa.</li>
+              <li>Cuidados: compressão local, monitoramento de sangramento, comunicação imediata ao médico.</li>
+            </ul>
+          </li>
+          <li><strong>Deiscência de Sutura (abertura dos pontos):</strong>
+            <ul>
+              <li>Sinais: Abertura da incisão cirúrgica, exposição de tecidos internos.</li>
+              <li>Cuidados: Manter a área limpa e coberta com curativo estéril, procurar atendimento médico urgente.</li>
+            </ul>
+          </li>
+          <li><strong>Alteração da Sensibilidade:</strong>
+            <ul>
+              <li>Sinais: Dormência, diminuição ou aumento da sensibilidade na área operada.</li>
+              <li>Cuidados: Geralmente temporário, mas deve ser monitorado e comunicado ao médico.</li>
+            </ul>
+          </li>
+          <li><strong>Dor Crônica ou Dispareunia (dor na relação sexual):</strong>
+            <ul>
+              <li>Sinais: Dor persistente na região, dor ou desconforto durante as relações sexuais.</li>
+              <li>Cuidados: Avaliação médica para identificar a causa e definir tratamento.</li>
+            </ul>
+          </li>
+          <li><strong>Formação de Cicatriz Inestética (Quelóide/Hipertrófica):</strong>
+            <ul>
+              <li>Sinais: Cicatriz elevada, espessa, com coceira ou dolor, de coloração alterada.</li>
+              <li>Cuidados: Tratamentos específicos como compressão, pomadas ou procedimentos a laser podem ser indicados.</li>
+            </ul>
+          </li>
+          <li><strong>Complicações Relacionadas à Anestesia:</strong>
+            <ul>
+              <li>Sinais: Náuseas, vômitos, tontura, reações alérgicas.</li>
+              <li>Cuidados: Monitoramento pós-anestésico na SRPA, administração de antieméticos.</li>
+            </ul>
+          </li>
+        </ul>
+        <p>O técnico de enfermagem tem um papel essencial na observação e comunicação de quaisquer sinais de complicações, contribuindo para a rápida intervenção e segurança da paciente.</p>
+      </div>
+    </section>
+
+    <!-- Game Section -->
+    <section id="game">
+        <div id="game-container">
+            <h2>🎮 Adivinhe a Cirurgia! 🧠</h2>
+            <!-- New section for player name input -->
+            <div id="player-names-input">
+                <p>Insira os nomes dos jogadores (até 5):</p>
+                <input type="text" id="player1-name" placeholder="Jogador 1" maxlength="20" />
+                <input type="text" id="player2-name" placeholder="Jogador 2" maxlength="20" />
+                <input type="text" id="player3-name" placeholder="Jogador 3" maxlength="20" />
+                <input type="text" id="player4-name" placeholder="Jogador 4" maxlength="20" />
+                <input type="text" id="player5-name" placeholder="Jogador 5" maxlength="20" />
+            </div>
+            
+            <button id="start-game-btn">COMEÇAR O JOGO</button>
+            <p id="game-progress"></p> 
+            <p id="current-player-score"></p> <!-- New element for current player's score -->
+            <p id="question-clue">Carregando pergunta...</p> 
+            <div id="options-container">
+                <button class="option-btn" data-option="0">Opção 1</button>
+                <button class="option-btn" data-option="1">Opção 2</button>
+                <button class="option-btn" data-option="2">Opção 3</button>
+            </div>
+            <p id="feedback"></p> 
+            <button id="next-question-btn">Próxima Pergunta</button> 
+            <button id="restart-game-btn">Reiniciar Jogo</button> 
+
+            <!-- New element to display final scores -->
+            <div id="score-display">
+                <h3>🏆 Pontuação Final - Vencedor da Caixa de Bombons! 🏆</h3>
+                <ul id="final-scores-list"></ul>
+            </div>
+        </div>
+    </section>
+
+  </main>
+
+  <footer>
+    &copy; 2025 Cirurgias Genitais Femininas - Todos os direitos reservados
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="scrollToTopBtn" title="Voltar ao Topo">🔝</button>
+
+  <!-- Image Modal (Lightbox) Structure -->
+  <div id="image-modal">
+    <img id="modal-image" src="" alt="Imagem Ampliada" />
+    <button id="modal-close-btn">✖</button>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('nav ul li a');
+      const header = document.querySelector('header');
+      const main = document.querySelector('main');
+
+      // Game Elements
+      const startGameBtn = document.getElementById('start-game-btn');
+      const questionClueElement = document.getElementById('question-clue');
+      const optionsContainer = document.getElementById('options-container');
+      const feedbackElement = document.getElementById('feedback');
+      const nextQuestionBtn = document.getElementById('next-question-btn');
+      const restartGameBtn = document.getElementById('restart-game-btn');
+      const gameProgressElement = document.getElementById('game-progress');
+      const currentPlayerScoreElement = document.getElementById('current-player-score'); 
+      const gameContainer = document.getElementById('game-container'); 
+
+      // New game elements for name input and score display
+      const playerNamesInputSection = document.getElementById('player-names-input');
+      const playerNameInputs = document.querySelectorAll('#player-names-input input[type="text"]');
+      const scoreDisplay = document.getElementById('score-display');
+      const finalScoresList = document.getElementById('final-scores-list');
+
+      // Back to Top Button
+      const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+      // Image Modal Elements
+      const imageModal = document.getElementById('image-modal');
+      const modalImage = document.getElementById('modal-image');
+      const modalCloseBtn = document.getElementById('modal-close-btn');
+      const clickableImages = document.querySelectorAll('.card img'); 
+
+      // Game Variables
+      let currentQuestionIndex = 0;
+      let players = []; 
+      let playerScores = {}; 
+      let currentPlayerIndex = 0; 
+
+      const gameQuestions = [
+          {
+              clue: "Este procedimento reconstrói o canal vulvo-vaginal, muitas vezes buscando resolver a frouxidão causada por partos ou o relaxamento muscular.",
+              options: ["Clitoroplastia", "Vaginoplastia", "Himenoplastia"],
+              correctAnswer: "Vaginoplastia"
+          },
+          {
+              clue: "Cirurgia delicada que visa remodelar a estrutura erétil externa, sendo indicada para redução de tamanho ou correção de anomalias congênitas, sempre preservando a sensibilidade.",
+              options: ["Himenoplastia", "Clitoroplastia", "Ninfoplastia"],
+              correctAnswer: "Clitoroplastia"
+          },
+          {
+              clue: "Procedimento que reconstrói uma membrana que pode ter sido rompida por diversas razões, frequentemente realizado por motivos culturais ou pessoais.",
+              options: ["Ninfoplastia", "Vaginoplastia", "Himenoplastia"],
+              correctAnswer: "Himenoplastia"
+          },
+          {
+              clue: "Esta é uma das cirurgias genitais femininas mais comuns, focada na redução do tamanho ou correção da assimetria dos pequenos lábios vaginais.",
+              options: ["Himenoplastia", "Vaginoplastia", "Ninfoplastia"],
+              correctAnswer: "Ninfoplastia"
+          }
+      ];
+
+      // Function to shuffle the array of questions (optional, but good for replayability)
+      function shuffleArray(array) {
+          for (let i = array.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [array[i], array[j]] = [array[j], array[i]]; 
+          }
+      }
+
+      // Function to start the game
+      function startGame() {
+          // Collect player names
+          players = [];
+          playerNameInputs.forEach(input => {
+              if (input.value.trim() !== '') {
+                  players.push(input.value.trim());
+              }
+          });
+
+          // If no name was entered, use a default name
+          if (players.length === 0) {
+              players.push("Jogador 1");
+          }
+
+          // Initialize scores for each player
+          playerScores = {};
+          players.forEach(player => {
+              playerScores[player] = 0;
+          });
+
+          // Esconde a entrada de nomes e mostra os elementos do jogo
+          playerNamesInputSection.style.display = 'none';
+          startGameBtn.style.display = 'none';
+          questionClueElement.style.display = 'block';
+          optionsContainer.style.display = 'grid';
+          feedbackElement.style.display = 'block';
+          gameProgressElement.style.display = 'block';
+          currentPlayerScoreElement.style.display = 'block'; 
+          scoreDisplay.style.display = 'none'; 
+
+          shuffleArray(gameQuestions); 
+          currentQuestionIndex = 0;
+          currentPlayerIndex = 0; 
+          loadQuestion();
+      }
+
+      // Loads a question into the game interface
+      function loadQuestion() {
+          if (currentQuestionIndex < gameQuestions.length) {
+              const question = gameQuestions[currentQuestionIndex];
+              questionClueElement.textContent = question.clue;
+              optionsContainer.innerHTML = ''; 
+              feedbackElement.textContent = ''; 
+              feedbackElement.className = ''; 
+              nextQuestionBtn.style.display = 'none'; 
+              restartGameBtn.style.display = 'none'; 
+
+              // Display current player and progress
+              const currentPlayerName = players[currentPlayerIndex % players.length];
+              gameProgressElement.textContent = `Rodada de ${currentPlayerName} | Pergunta ${currentQuestionIndex + 1} de ${gameQuestions.length}`;
+              currentPlayerScoreElement.textContent = `Pontos de ${currentPlayerName}: ${playerScores[currentPlayerName]}`; 
+
+              // Shuffle options for the current question
+              const shuffledOptions = [...question.options].sort(() => Math.random() - 0.5);
+
+              shuffledOptions.forEach(option => {
+                  const button = document.createElement('button');
+                  button.classList.add('option-btn');
+                  button.textContent = option;
+                  // Pass current player name to checkAnswer function
+                  button.addEventListener('click', (event) => {
+                      checkAnswer(option, question.correctAnswer, currentPlayerName);
+                      // Add ripple effect to the clicked button
+                      createRipple(event);
+                  });
+                  optionsContainer.appendChild(button);
+              });
+          } else {
+              endGame();
+          }
+      }
+
+      // Checks the selected answer
+      function checkAnswer(selectedOption, correctAnswer, playerName) {
+          // Desabilita todos os botões de opção após a seleção
+          Array.from(optionsContainer.children).forEach(btn => {
+              btn.disabled = true; 
+              if (btn.textContent === correctAnswer) {
+                  btn.style.backgroundColor = '#43a047'; 
+                  btn.style.boxShadow = '0 0 15px rgba(67, 160, 71, 0.3)'; 
+              } else if (btn.textContent === selectedOption) {
+                  btn.style.backgroundColor = '#e53935'; 
+              }
+          });
+
+          if (selectedOption === correctAnswer) {
+              feedbackElement.textContent = '🎉 Correto! 🎉';
+              feedbackElement.className = 'feedback-correct';
+              playerScores[playerName]++; 
+              showScorePopup(optionsContainer.getBoundingClientRect().top + optionsContainer.offsetHeight / 2); 
+              currentPlayerScoreElement.textContent = `Pontos de ${playerName}: ${playerScores[playerName]}`; 
+          } else {
+              feedbackElement.textContent = `❌ Incorreto. A resposta certa era: ${correctAnswer}.`;
+              feedbackElement.className = 'feedback-incorrect';
+          }
+          nextQuestionBtn.style.display = 'block'; 
+      }
+
+      // Function to show score pop-up
+      function showScorePopup(yPosition) {
+          const popup = document.createElement('div');
+          popup.classList.add('score-popup');
+          popup.textContent = '+1 Ponto!';
+          popup.style.top = `${yPosition}px`; 
+
+          // Ensure popup appears relative to the game container, not global window
+          const gameContainerRect = gameContainer.getBoundingClientRect();
+          popup.style.left = `${gameContainerRect.left + gameContainerRect.width / 2}px`;
+          popup.style.top = `${gameContainerRect.top + gameContainerRect.height / 2}px`;
+          
+          document.body.appendChild(popup); 
+
+          popup.addEventListener('animationend', () => {
+              popup.remove();
+          });
+      }
+
+      // Advances to the next question
+      function nextQuestion() {
+          // Advance to the next player for the next question
+          currentPlayerIndex++;
+          currentQuestionIndex++;
+          loadQuestion();
+      }
+
+      // End of game
+      function endGame() {
+          questionClueElement.textContent = `Jogo Finalizado!`;
+          optionsContainer.innerHTML = ''; 
+          feedbackElement.textContent = ''; 
+          nextQuestionBtn.style.display = 'none'; 
+          restartGameBtn.style.display = 'block'; 
+          gameProgressElement.style.display = 'none'; 
+          currentPlayerScoreElement.style.display = 'none'; 
+
+          displayFinalScores(); 
+      }
+
+      // Displays final scores
+      function displayFinalScores() {
+          finalScoresList.innerHTML = ''; 
+          scoreDisplay.style.display = 'block'; 
+
+          // Convert scores object to array and sort by score (descending)
+          const sortedScores = Object.entries(playerScores).sort(([, scoreA], [, scoreB]) => scoreB - scoreA);
+
+          // Determine the highest score for tie-breaking/multiple winners
+          let highestScore = 0;
+          if (sortedScores.length > 0) {
+              highestScore = sortedScores[0][1]; 
+          }
+
+          sortedScores.forEach(([player, score], index) => {
+              const listItem = document.createElement('li');
+              listItem.innerHTML = `${player}: <span>${score}</span> pontos`;
+              // Add winner trophy if it's the highest score (allowing for ties)
+              if (score === highestScore && highestScore > 0) { 
+                  listItem.classList.add('winner-trophy');
+              }
+              finalScoresList.appendChild(listItem);
+          });
+      }
+
+      // Restarts the game
+      function restartGame() {
+          playerNamesInputSection.style.display = 'flex'; 
+          startGameBtn.style.display = 'block'; 
+          questionClueElement.style.display = 'none'; 
+          optionsContainer.style.display = 'none';
+          feedbackElement.style.display = 'none';
+          restartGameBtn.style.display = 'none';
+          gameProgressElement.style.display = 'none';
+          currentPlayerScoreElement.style.display = 'none'; 
+          scoreDisplay.style.display = 'none'; 
+
+          // Clear name fields
+          playerNameInputs.forEach(input => input.value = '');
+          // Game state will be reset when startGame is called again
+      }
+
+      // --- General Site Logic ---
+
+      // Function to adjust main content top padding based on header height
+      function adjustMainPadding() {
+          main.style.paddingTop = `${header.offsetHeight + 20}px`;
+      }
+
+      window.addEventListener('load', adjustMainPadding);
+      window.addEventListener('resize', adjustMainPadding);
+
+      // Intersection Observer setup
+      let currentObserver = null; 
+
+      function setupIntersectionObserver() {
+          if (currentObserver) {
+              currentObserver.disconnect();
+          }
+
+          const headerHeight = header.offsetHeight;
+          const observerOptions = {
+              root: null, 
+              rootMargin: `-${headerHeight + 10}px 0px 0px 0px`, 
+              threshold: 0.1 
+          };
+
+          currentObserver = new IntersectionObserver((entries, observer) => {
+              entries.forEach(entry => {
+                  const id = entry.target.getAttribute('id');
+                  const navLink = document.querySelector(`nav ul li a[href="#${id}"]`);
+
+                  if (entry.isIntersecting) {
+                      entry.target.classList.add('visible');
+
+                      navLinks.forEach(link => link.classList.remove('active'));
+                      if (navLink) {
+                          navLink.classList.add('active');
+                      }
+
+                      // --- Game Specific Logic ---
+                      if (id === 'game') {
+                          // When game section is visited, ensure name input is visible
+                          playerNamesInputSection.style.display = 'flex';
+                          startGameBtn.style.display = 'block';
+                          questionClueElement.style.display = 'none';
+                          optionsContainer.style.display = 'none';
+                          feedbackElement.style.display = 'none';
+                          nextQuestionBtn.style.display = 'none';
+                          restartGameBtn.style.display = 'none';
+                          gameProgressElement.style.display = 'none';
+                          currentPlayerScoreElement.style.display = 'none';
+                          scoreDisplay.style.display = 'none'; 
+                      }
+                  } else {
+                      entry.target.classList.remove('visible');
+                  }
+              });
+          }, observerOptions);
+
+          sections.forEach(section => {
+              currentObserver.observe(section);
+          });
+      }
+      
+      setupIntersectionObserver(); 
+
+      // Smooth navigation with fixed header compensation
+      navLinks.forEach(link => {
+        link.addEventListener('click', e => {
+          e.preventDefault(); 
+          const targetID = link.getAttribute('href').substring(1); 
+          const targetSection = document.getElementById(targetID); 
+          
+          if (targetSection) {
+              targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              
+              navLinks.forEach(item => item.classList.remove('active'));
+              link.classList.add('active');
+          }
+        });
+      });
+
+      // Event Listeners for Game Buttons
+      startGameBtn.addEventListener('click', (event) => {
+          startGame();
+          createRipple(event); 
+      });
+      nextQuestionBtn.addEventListener('click', (event) => {
+          nextQuestion();
+          createRipple(event); 
+      });
+      restartGameBtn.addEventListener('click', (event) => {
+          restartGame();
+          createRipple(event); 
+      });
+
+      // Function to create ripple effect
+      function createRipple(event) {
+          const button = event.currentTarget;
+          const circle = document.createElement('span');
+          const diameter = Math.max(button.clientWidth, button.clientHeight);
+          const radius = diameter / 2;
+
+          circle.style.width = circle.style.height = `${diameter}px`;
+          circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+          circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+          circle.classList.add('ripple');
+
+          const ripple = button.getElementsByClassName('ripple')[0];
+
+          if (ripple) {
+              ripple.remove();
+          }
+
+          button.appendChild(circle);
+      }
+
+      // --- Back to Top Button Logic ---
+      window.addEventListener('scroll', () => {
+          if (window.scrollY > 300) { 
+              scrollToTopBtn.style.display = 'block';
+          } else {
+              scrollToTopBtn.style.display = 'none';
+          }
+      });
+
+      scrollToTopBtn.addEventListener('click', () => {
+          window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+          });
+      });
+
+      // Initial page load logic (already called by DOMContentLoaded for observer)
+      window.addEventListener('load', adjustMainPadding);
+
+      // Image Modal Functionality
+      clickableImages.forEach(image => {
+          image.addEventListener('click', () => {
+              modalImage.src = image.src; 
+              imageModal.classList.add('active'); 
+              document.body.classList.add('modal-active'); 
+          });
+      });
+
+      modalCloseBtn.addEventListener('click', () => {
+          imageModal.classList.remove('active'); 
+          document.body.classList.remove('modal-active'); 
+      });
+
+      imageModal.addEventListener('click', (event) => {
+          if (event.target === imageModal) {
+              imageModal.classList.remove('active');
+              document.body.classList.remove('modal-active');
+          }
+      });
+    }); // End DOMContentLoaded
+  </script>
+</body>
+</html>
