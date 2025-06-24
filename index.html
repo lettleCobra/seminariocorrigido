@@ -22,12 +22,108 @@
       line-height: 1.7; /* Comfortable line spacing */
       min-height: 100vh; /* Minimum screen height */
       overflow-x: hidden; /* Prevents unwanted horizontal scrolling */
-      padding-top: 85px; /* Space for fixed header */
+      /* padding-top will be handled by JS after splash screen */
     }
 
     body.modal-active {
         overflow: hidden; /* Prevents body scrolling when image modal is active */
     }
+
+    /* Splash Screen Styles */
+    #splash-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%); /* Same as body background for smooth transition */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        z-index: 99999; /* Ensure it's on top of everything */
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.8s ease-out, visibility 0.8s ease-out 0.8s; /* Fade out, then hide after transition */
+    }
+
+    #splash-screen.fade-out {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    #splash-screen h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 3.5rem; /* Larger welcome title */
+        color: #880e4f; /* Deep rose */
+        margin-bottom: 2rem;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        /* Animation applied to spans directly */
+    }
+
+    #splash-screen h1 span {
+        display: inline-block; /* Essential for transform properties */
+        opacity: 0;
+        transform: translateY(20px); /* Start below for slide-up effect */
+        animation: fadeInUp 0.6s ease-out forwards; /* Apply animation to each word */
+    }
+
+    #splash-screen h1 span:nth-child(1) { animation-delay: 0.1s; }
+    #splash-screen h1 span:nth-child(2) { animation-delay: 0.2s; }
+    #splash-screen h1 span:nth-child(3) { animation-delay: 0.3s; }
+
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* Removed old pulseTitle animation as new one replaces it for better effect */
+    /* @keyframes pulseTitle {
+        0% { transform: scale(1); opacity: 1; }
+        100% { transform: scale(1.03); opacity: 0.9; }
+    } */
+
+    #splash-screen button {
+        background: linear-gradient(to right, #d81b60, #f48fb1); /* Pink gradient for start button */
+        color: white;
+        border: none;
+        padding: 20px 50px; /* Larger padding for a prominent button */
+        border-radius: 40px; /* More rounded */
+        font-size: 1.5em; /* Larger font size */
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        transition: all 0.3s ease-out;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    #splash-screen button:hover {
+        background: linear-gradient(to right, #f48fb1, #d81b60);
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    }
+    /* Ripple effect for splash button */
+    #splash-screen button .ripple {
+        background: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Main Site Content Container */
+    #site-content {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.8s ease-out 0.8s, visibility 0.8s ease-out 0.8s; /* Fade in after splash screen fades out */
+    }
+    #site-content.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+
 
     /* Fixed Header Styles */
     header {
@@ -684,7 +780,7 @@
     /* Responsiveness */
     @media (max-width: 768px) { 
       body {
-        padding-top: 75px; 
+        /* No padding-top here, handled by JS when site-content is revealed */
       }
       header {
         min-height: auto; /* Allow header height to adjust */
@@ -752,7 +848,7 @@
 
     @media (max-width: 480px) { 
       body {
-        padding-top: 110px; /* Adjust based on new header height */
+        /* No padding-top here, handled by JS when site-content is revealed */
       }
       nav .logo {
         font-size: 1.5rem; /* Further reduce logo size for very small screens */
@@ -790,265 +886,278 @@
   </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <div class="logo">Cirurgias Genitais Femininas</div>
-      <ul>
-        <li><a href="#introducao" class="active">Introdução</a></li>
-        <li><a href="#vaginoplastia">Tipos de Cirurgias</a></li>
-        <li><a href="#papel-tecnico">Papel do Técnico</a></li>
-        <li><a href="#cuidados-enfermagem">Cuidados de Enfermagem</a></li>
-        <li><a href="#complicacoes">Complicações</a></li>
-        <li><a href="#game">Adivinhe a Cirurgia!</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-    <section id="introducao" class="visible">
-      <h2>Introdução às Cirurgias Genitais Femininas</h2>
-      <div class="card">
-        <img src="https://www.cirurgiaestetica.com.br/wp-content/uploads/2018/10/cirurgia-intima-mulheres.jpg.webp" alt="Profissional de saúde feminina examinando paciente, simbolizando o cuidado em saúde da mulher." />
-        <div>
-          <span class="focus-point">🌟 Desvendando um Campo Essencial da Saúde da Mulher 🌟</span>
-          <p>As <strong>Cirurgias Genitais Femininas (CGFs)</strong> compreendem um conjunto de procedimentos cirúrgicos ginecológicos focados na região genital feminina, abordando desde aspectos funcionais e de saúde até questões estéticas e de bem-estar psicológico. Nesta apresentação, mergulharemos nos diversos tipos de CGFs, suas indicações clínicas mais comuns e a importância de uma abordagem informada e humanizada.</p>
-          <p>É fundamental compreender que estas cirurgias não se limitam apenas à estética, mas muitas vezes são cruciais para a melhora da qualidade de vida, alívio de desconfortos físicos e emocionais, e reconstrução em casos de anomalias congênitas ou traumas. Nosso objetivo é desmistificar o tema e ressaltar o papel multidisciplinar no cuidado à paciente.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="vaginoplastia">
-      <h2>Tipos de Cirurgias Genitais Femininas</h2>
-      <p>Conheça os principais procedimentos e suas indicações:</p>
-
-      <div class="card">
-        <img src="https://dramarianaamalia.com.br/wp-content/uploads/2024/02/Imagem-do-WhatsApp-de-2024-02-23-as-10.07.09_727b1365-1.jpg" alt="Ilustração da anatomia da cavidade vaginal, destacando áreas de reconstrução em uma vaginoplastia." />
-        <div>
-          <span class="focus-point">✨ VAGINOPLASTIA: Reconstrução e Rejuvenescimento Vaginal ✨</span>
-          <p>A <strong>Vaginoplastia</strong>, ou Plástica da Cavidade Vaginal, é um procedimento que visa reconstruir a anatomia e a funcionalidade do canal vulvo-vaginal. É comumente indicada para mulheres que experimentam frouxidão vaginal, um problema que pode surgir após múltiplos partos normais, envelhecimento natural ou perda significativa de peso. O principal objetivo é o <strong>estreitamento da vagina</strong>, melhorando o tônus muscular e a sensação durante a relação sexual, além de corrigir prolapsos leves de órgãos pélvicos. Também pode ser procurada para fins de rejuvenescimento vaginal e para aumentar a autoestima e o conforto íntimo.</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="" alt="Representação 3D da anatomia feminina com foco no clitóris, ilustrando o campo de atuação da clitoroplastia." />
-        <div>
-          <span class="focus-point">💖 CLITOROPLASTIA: Remodelagem com Preservação da Sensibilidade 💖</span>
-          <p>A <strong>Clitoroplastia</strong> é uma cirurgia altamente especializada que visa remodelar o clitóris. As indicações mais comuns incluem a redução do tamanho do clitóris (em casos de hipertrofia clitoriana, que pode causar desconforto físico, irritação com roupas e impacto na autoestima), ou a correção de anomalias congênitas. O grande desafio e prioridade deste procedimento é <strong>preservar a sensibilidade e a função sexual</strong> intactas. A cirurgia é realizada com extrema delicadeza, minimizando o impacto nos nervos e vasos sanguíneos cruciais para o prazer sexual, buscando uma harmonia estética e funcional para a paciente.</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://grupoelas.com.br/wp-content/uploads/2021/05/himenoplastia-2.jpg" alt="Ilustração da anatomia vaginal destacando o hímen e suas estruturas, relevante para o procedimento de himenoplastia." />
-        <div>
-          <span class="focus-point">🌸 HIMENOPLASTIA: Reconstrução do Hímen 🌸</span>
-          <p>A <strong>Himenoplastia</strong> é a reconstrução cirúrgica do hímen, uma membrana que pode ter sido rompida por diversas razões, não apenas relacionadas à atividade sexual. Este procedimento é frequentemente procurado por mulheres por motivos culturais, religiosos, sociais ou pessoais, que buscam restaurar a integridade do hímen. A técnica envolve a sutura cuidadosa dos remanescentes himenais ou tecidos próximos para recriar uma membrana que se assemelhe ao hímen original. É um procedimento de curta duração e pode ser realizado sob anestesia local, oferecendo às pacientes a restauração física e emocional desejada.</p>
-        </div>
-      </div>
-
-      <div class="card" id="ninfoplastia">
-        <img src="https://cdn-ilahpph.nitrocdn.com/AHdZesSudTWvvLsyomlAkDpdNIwwPTvr/assets/images/optimized/rev-67e93e6/drafernandatorras.com.br/wp-content/uploads/2025/03/ninfoplastia-valor.webp" alt="Ilustração de antes e depois da Ninfoplastia (Labioplastia), mostrando a redução dos pequenos lábios." />
-        <div>
-          <span class="focus-point">🌟 NINFOPLASTIA (Labioplastia): Remodelagem dos Pequenos Lábios 🌟</span>
-          <p>A <strong>Ninfoplastia</strong>, também amplamente conhecida como Labioplastia, é um dos procedimentos de Cirurgia Genital Feminina mais procurados. Seu principal objetivo é <strgon>reduzir o tamanho ou corrigir a assimetria dos pequenos lábios vaginais</strgon>. Este excesso de tecido pode causar desconforto físico (atrito com roupas, dor durante atividades físicas ou sexuais) e impactar a autoestima da mulher.</p>
-          <p>A cirurgia visa proporcionar um contorno mais harmonioso e confortável, melhorando a qualidade de vida e a confiança. É um procedimento que exige precisão para manter a funcionalidade e a sensibilidade da região.</p>
-        </div>
-      </div>
-
-    </section>
-
-    <section id="papel-tecnico">
-      <h2>O Papel do Técnico de Enfermagem no Perioperatório</h2>
-      <div class="card card-list-style">
-        <span class="focus-point">🤝 AÇÕES ESSENCIAIS DO TÉCNICO DE ENFERMAGEM EM CGFs 🤝</span>
-        <p>O técnico de enfermagem desempenha um papel crucial em todas as fases do perioperatório (pré, intra e pós-operatório), garantindo a segurança e o bem-estar da paciente submetida a CGFs.</p>
-        <ul>
-          <li><strong>Pré-operatório:</strong>
-            <ul>
-              <li>Preparar a paciente: verificar sinais vitais, auxiliar na troca de roupa, orientar sobre o jejum.</li>
-              <li>Checar prontuário e lista de verificação de segurança cirúrgica.</li>
-              <li>Confortar e acalmar a paciente, oferecendo suporte emocional.</li>
-              <li>Realizar a tricotomia (remoção de pelos) da área cirúrgica, se indicado e seguindo protocolo.</li>
-            </ul>
-          </li>
-          <li><strong>Intraoperatório:</strong>
-            <ul>
-              <li>Auxiliar na montagem da sala cirúrgica e na organização dos materiais e equipamentos.</li>
-              <li>Apoiar a equipe cirúrgica na paramentação.</li>
-              <li>Manter a assepsia do campo cirúrgico.</li>
-              <li>Monitorar a paciente (sinais vitais, nível de consciência) sob supervisão do enfermeiro.</li>
-              <li>Fornecer materiais estéreis ao cirurgião, conforme solicitado.</li>
-            </ul>
-          </li>
-          <li><strong>Pós-operatório:</strong>
-            <ul>
-              <li>Monitorar a recuperação na sala de recuperação pós-anestésica (SRPA): sinais vitais, nível de dolor, sangramentos.</li>
-              <li>Administrar medicações conforme prescrição (analgésicos, antieméticos).</li>
-              <li>Auxiliar na mobilização e conforto da paciente.</li>
-              <li>Observar a área cirúrgica para sinais de complicações iniciais.</li>
-              <li>Garantir o conforto térmico e a privacidade da paciente.</li>
-            </ul>
-          </li>
-        </ul>
-        <p>A atenção e o cuidado do técnico de enfermagem são vitais para a segurança e a recuperação bem-sucedida das pacientes.</p>
-      </div>
-    </section>
-
-    <section id="cuidados-enfermagem">
-      <h2>Cuidados de Enfermagem Específicos</h2>
-      <div class="card card-list-style">
-        <span class="focus-point">� CUIDADOS HOLÍSTICOS PARA UMA RECUPERAÇÃO SEGURA E EFICAZ 🩹</span>
-        <p>Os cuidados de enfermagem em CGFs são cruciais e abrangem diversas áreas para assegurar a recuperação completa e o bem-estar da paciente:</p>
-        <ul>
-          <li><strong>Higiene e Prevenção de Infecções:</strong>
-            <ul>
-              <li>Manter higiene adequada da área genital com água morna e sabão neutro, conforme orientação médica, evitando fricção excessiva.</li>
-              <li>Realizar curativos conforme a técnica asséptica e frequência indicada, observando sinais de infecção.</li>
-            </ul>
-          </li>
-          <li><strong>Conforto e Mobilização:</strong>
-            <ul>
-              <li>Evitar o uso de roupas apertadas ou justas para prevenir irritações e facilitar a circulação na área operada.</li>
-              <li>Auxiliar na mobilização precoce (caminhada leve) conforme liberação médica, prevenindo complicações como trombose.</li>
-            </ul>
-          </li>
-          <li><strong>Manejo da Dor e Medicação:</strong>
-            <ul>
-              <li>Utilizar medicações prescritas (analgésicos, anti-inflamatórios, antibióticos) conforme orientação médica para controle da dolor e prevenção de infecções.</li>
-              <li>Monitorar a eficácia da medicação e relatar ao enfermeiro/médico qualquer dolor persistente ou intensa.</li>
-            </ul>
-          </li>
-          <li><strong>Dieta e Hidratação:</strong>
-            <ul>
-              <li>Manter uma dieta equilibrada e hidratação adequada para auxiliar no processo de recuperação do corpo e funcionamento intestinal.</li>
-            </ul>
-
-          </li>
-          <li><strong>Restrições de Atividade:</strong>
-            <ul>
-              <li>Abster-se de relações sexuais pelo período recomendado pelo cirurgião (geralmente 6 a 8 semanas ou mais), para garantir a cicatrização completa e evitar complicações.</li>
-              <li>Evitar esforço físico intenso, levantamento de peso e atividades que possam aumentar a pressão abdominal, como agachamentos ou abdominais.</li>
-            </ul>
-          </li>
-          <li><strong>Acompanhamento e Monitoramento:
-            <ul>
-              <li>Comparecer a todas as consultas de retorno para acompanhamento da cicatrização e remoção de pontos, se necessário.</li>
-              <li>Observar atentamente quaisquer sinais de complicação: vermelhidão intensa, dolor crescente, inchaço excessivo, secreção purulenta, febre, náuseas persistentes, dificuldade para urinar/evacuar, e comunicar o médico/enfermeiro imediatamente.</li>
-            </ul>
-          </li>
-        </ul>
-        <p>O cuidado de enfermagem é fundamental para uma recuperação segura e o retorno da paciente às suas suas atividades diárias com qualidade de vida.</p>
-      </div>
-    </section>
-
-    <section id="complicacoes">
-      <h2>Complicações e Intercorrências Possíveis</h2>
-      <div class="card card-list-style">
-        <span class="focus-point">⚠️ SINAIS DE ALERTA E CUIDADOS NECESSÁRIOS ⚠️</span>
-        <p>Embora as CGFs sejam geralmente seguras, como qualquer procedimento cirúrgico, elas podem apresentar complicações e intercorrências. O reconhecimento precoce é fundamental para um bom prognóstico.</p>
-        <ul>
-          <li><strong>Infecção:</strong>
-            <ul>
-              <li>Sinais: vermelhidão, inchaço, calor local, dor intensa, secreção purulenta na incisão, febre.</li>
-              <li>Cuidados: higiene rigorosa, uso de antibióticos conforme prescrição.</li>
-            </ul>
-          </li>
-          <li><strong>Hemorragia/Hematoma:</strong>
-            <ul>
-              <li>Sinais: sangramento excessivo na incisão, formação de inchaço arroxeado ou endurecido, dolor intensa.</li>
-              <li>Cuidados: compressão local, monitoramento de sangramento, comunicação imediata ao médico.</li>
-            </ul>
-          </li>
-          <li><strong>Deiscência de Sutura (abertura dos pontos):</strong>
-            <ul>
-              <li>Sinais: Abertura da incisão cirúrgica, exposição de tecidos internos.</li>
-              <li>Cuidados: Manter a área limpa e coberta com curativo estéril, procurar atendimento médico urgente.</li>
-            </ul>
-          </li>
-          <li><strong>Alteração da Sensibilidade:</strong>
-            <ul>
-              <li>Sinais: Dormência, diminuição ou aumento da sensibilidade na área operada.</li>
-              <li>Cuidados: Geralmente temporário, mas deve ser monitorado e comunicado ao médico.</li>
-            </ul>
-          </li>
-          <li><strong>Dor Crônica ou Dispareunia (dor na relação sexual):</strong>
-            <ul>
-              <li>Sinais: Dor persistente na região, dolor ou desconforto durante as relações sexuais.</li>
-              <li>Cuidados: Avaliação médica para identificar a causa e definir tratamento.</li>
-            </ul>
-          </li>
-          <li><strong>Formação de Cicatriz Inestética (Quelóide/Hipertrófica):</strong>
-            <ul>
-              <li>Sinais: Cicatriz elevada, espessa, com coceira ou dolor, de coloração alterada.</li>
-              <li>Cuidados: Tratamentos específicos como compressão, pomadas ou procedimentos a laser podem ser indicados.</li>
-            </ul>
-          </li>
-          <li><strong>Complicações Relacionadas à Anestesia:</strong>
-            <ul>
-              <li>Sinais: Náuseas, vômitos, tontura, reações alérgicas.</li>
-              <li>Cuidados: Monitoramento pós-anestésico na SRPA, administração de antieméticos.</li>
-            </ul>
-          </li>
-        </ul>
-        <p>O técnico de enfermagem tem um papel essencial na observação e comunicação de quaisquer sinais de complicações, contribuindo para a rápida intervenção e segurança da paciente.</p>
-      </div>
-    </section>
-
-    <!-- Game Section -->
-    <section id="game">
-        <div id="game-container">
-            <h2>🎮 Adivinhe a Cirurgia! 🧠</h2>
-            <!-- New section for player name input -->
-            <div id="player-names-input">
-                <p>Insira os nomes dos jogadores (até 5):</p>
-                <input type="text" id="player1-name" placeholder="Jogador 1" maxlength="20" />
-                <input type="text" id="player2-name" placeholder="Jogador 2" maxlength="20" />
-                <input type="text" id="player3-name" placeholder="Jogador 3" maxlength="20" />
-                <input type="text" id="player4-name" placeholder="Jogador 4" maxlength="20" />
-                <input type="text" id="player5-name" placeholder="Jogador 5" maxlength="20" />
-            </div>
-            
-            <button id="start-game-btn">COMEÇAR O JOGO</button>
-            <p id="game-progress"></p> 
-            <p id="current-player-score"></p> <!-- New element for current player's score -->
-            <p id="question-clue">Carregando pergunta...</p> 
-            <div id="options-container">
-                <button class="option-btn" data-option="0">Opção 1</button>
-                <button class="option-btn" data-option="1">Opção 2</button>
-                <button class="option-btn" data-option="2">Opção 3</button>
-            </div>
-            <p id="feedback"></p> 
-            <button id="next-question-btn">Próxima Pergunta</button> 
-            <button id="restart-game-btn">Reiniciar Jogo</button> 
-
-            <!-- New element to display final scores -->
-            <div id="score-display">
-                <h3>🏆 Pontuação Final - Vencedor da Caixa de Bombons! 🏆</h3>
-                <ul id="final-scores-list"></ul>
-            </div>
-        </div>
-    </section>
-
-  </main>
-
-  <footer>
-    &copy; 2025 Cirurgias Genitais Femininas - Todos os direitos reservados
-  </footer>
-
-  <!-- Back to Top Button -->
-  <button id="scrollToTopBtn" title="Voltar ao Topo">🔝</button>
-
-  <!-- Image Modal (Lightbox) Structure -->
-  <div id="image-modal">
-    <img id="modal-image" src="" alt="Imagem Ampliada" />
-    <button id="modal-close-btn">✖</button>
+  <!-- Splash Screen -->
+  <div id="splash-screen">
+    <h1><span>Cirurgias</span> <span>Genitais</span> <span>Femininas</span></h1>
+    <button id="start-button">COMEÇAR</button>
   </div>
+
+  <!-- Main Site Content -->
+  <div id="site-content">
+    <header>
+      <nav>
+        <div class="logo">Cirurgias Genitais Femininas</div>
+        <ul>
+          <li><a href="#introducao" class="active">Introdução</a></li>
+          <li><a href="#vaginoplastia">Tipos de Cirurgias</a></li>
+          <li><a href="#papel-tecnico">Papel do Técnico</a></li>
+          <li><a href="#cuidados-enfermagem">Cuidados de Enfermagem</a></li>
+          <li><a href="#complicacoes">Complicações</a></li>
+          <li><a href="#game">Adivinhe a Cirurgia!</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="introducao" class="visible">
+        <h2>Introdução às Cirurgias Genitais Femininas</h2>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1579684385157-fc79412f8a4e?auto=format&fit=crop&w=600&q=80" alt="Profissional de saúde feminina examinando paciente, simbolizando o cuidado em saúde da mulher." />
+          <div>
+            <span class="focus-point">🌟 Desvendando um Campo Essencial da Saúde da Mulher 🌟</span>
+            <p>As <strong>Cirurgias Genitais Femininas (CGFs)</strong> compreendem um conjunto de procedimentos cirúrgicos ginecológicos focados na região genital feminina, abordando desde aspectos funcionais e de saúde até questões estéticas e de bem-estar psicológico. Nesta apresentação, mergulharemos nos diversos tipos de CGFs, suas indicações clínicas mais comuns e a importância de uma abordagem informada e humanizada.</p>
+            <p>É fundamental compreender que estas cirurgias não se limitam apenas à estética, mas muitas vezes são cruciais para a melhora da qualidade de vida, alívio de desconfortos físicos e emocionais, e reconstrução em casos de anomalias congênitas ou traumas. Nosso objetivo é desmistificar o tema e ressaltar o papel multidisciplinar no cuidado à paciente.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="vaginoplastia">
+        <h2>Tipos de Cirurgias Genitais Femininas</h2>
+        <p>Conheça os principais procedimentos e suas indicações:</p>
+
+        <div class="card">
+          <img src="https://dramarianaamalia.com.br/wp-content/uploads/2024/02/Imagem-do-WhatsApp-de-2024-02-23-as-10.07.09_727b1365-1.jpg" alt="Ilustração da anatomia da cavidade vaginal, destacando áreas de reconstrução em uma vaginoplastia." />
+          <div>
+            <span class="focus-point">✨ VAGINOPLASTIA: Reconstrução e Rejuvenescimento Vaginal ✨</span>
+            <p>A <strong>Vaginoplastia</strong>, ou Plástica da Cavidade Vaginal, é um procedimento que visa reconstruir a anatomia e a funcionalidade do canal vulvo-vaginal. É comumente indicada para mulheres que experimentam frouxidão vaginal, um problema que pode surgir após múltiplos partos normais, envelhecimento natural ou perda significativa de peso. O principal objetivo é o **estreitamento da vagina**, melhorando o tônus muscular e a sensação durante a relação sexual, além de corrigir prolapsos leves de órgãos pélvicos. Também pode ser procurada para fins de rejuvenescimento vaginal e para aumentar a autoestima e o conforto íntimo.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://img.freepik.com/fotos-premium/representacao-3d-da-anatomia-feminina-vista-do-clitoris_941097-360.jpg?w=740" alt="Representação 3D da anatomia feminina com foco no clitóris, ilustrando o campo de atuação da clitoroplastia." />
+          <div>
+            <span class="focus-point">💖 CLITOROPLASTIA: Remodelagem com Preservação da Sensibilidade 💖</span>
+            <p>A <strong>Clitoroplastia</strong> é uma cirurgia altamente especializada que visa remodelar o clitóris. As indicações mais comuns incluem a redução do tamanho do clitóris (em casos de hipertrofia clitoriana, que pode causar desconforto físico, irritação com roupas e impacto na autoestima), ou a correção de anomalias congênitas. O grande desafio e prioridade deste procedimento é **preservar a sensibilidade e a função sexual** intactas. A cirurgia é realizada com extrema delicadeza, minimizando o impacto nos nervos e vasos sanguíneos cruciais para o prazer sexual, buscando uma harmonia estética e funcional para a paciente.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://img.freepik.com/vetores-premium/anatomia-vaginal_23-2148782393.jpg?w=740" alt="Ilustração da anatomia vaginal destacando o hímen e suas estruturas, relevante para o procedimento de himenoplastia." />
+          <div>
+            <span class="focus-point">🌸 HIMENOPLASTIA: Reconstrução do Hímen 🌸</span>
+            <p>A <strong>Himenoplastia</strong> é a reconstrução cirúrgica do hímen, uma membrana que pode ter sido rompida por diversas razões, não apenas relacionadas à atividade sexual. Este procedimento é frequentemente procurado por mulheres por motivos culturais, religiosos, sociais ou pessoais, que buscam restaurar a integridade do hímen. A técnica envolve a sutura cuidadosa dos remanescentes himenais ou tecidos próximos para recriar uma membrana que se assemelhe ao hímen original. É um procedimento de curta duração e pode ser realizado sob anestesia local, oferecendo às pacientes a restauração física e emocional desejada.</p>
+          </div>
+        </div>
+
+        <div class="card" id="ninfoplastia">
+          <img src="https://placehold.co/600x400/f7c6d0/5a3e5d?text=Ninfoplastia%0a(Labioplastia)" alt="Ilustração de antes e depois da Ninfoplastia (Labioplastia), mostrando a redução dos pequenos lábios." />
+          <div>
+            <span class="focus-point">🌟 NINFOPLASTIA (Labioplastia): Remodelagem dos Pequenos Lábios 🌟</span>
+            <p>A <strong>Ninfoplastia</strong>, também amplamente conhecida como Labioplastia, é um dos procedimentos de Cirurgia Genital Feminina mais procurados. Seu principal objetivo é **reduzir o tamanho ou corrigir a assimetria dos pequenos lábios vaginais**. Este excesso de tecido pode causar desconforto físico (atrito com roupas, dor durante atividades físicas ou sexuais) e impactar a autoestima da mulher.</p>
+            <p>A cirurgia visa proporcionar um contorno mais harmonioso e confortável, melhorando a qualidade de vida e a confiança. É um procedimento que exige precisão para manter a funcionalidade e a sensibilidade da região.</p>
+          </div>
+        </div>
+
+      </section>
+
+      <section id="papel-tecnico">
+        <h2>O Papel do Técnico de Enfermagem no Perioperatório</h2>
+        <div class="card card-list-style">
+          <span class="focus-point">🤝 AÇÕES ESSENCIAIS DO TÉCNICO DE ENFERMAGEM EM CGFs 🤝</span>
+          <p>O técnico de enfermagem desempenha um papel crucial em todas as fases do perioperatório (pré, intra e pós-operatório), garantindo a segurança e o bem-estar da paciente submetida a CGFs.</p>
+          <ul>
+            <li><strong>Pré-operatório:</strong>
+              <ul>
+                <li>Preparar a paciente: verificar sinais vitais, auxiliar na troca de roupa, orientar sobre o jejum.</li>
+                <li>Checar prontuário e lista de verificação de segurança cirúrgica.</li>
+                <li>Confortar e acalmar a paciente, oferecendo suporte emocional.</li>
+                <li>Realizar a tricotomia (remoção de pelos) da área cirúrgica, se indicado e seguindo protocolo.</li>
+              </ul>
+            </li>
+            <li><strong>Intraoperatório:</strong>
+              <ul>
+                <li>Auxiliar na montagem da sala cirúrgica e na organização dos materiais e equipamentos.</li>
+                <li>Apoiar a equipe cirúrgica na paramentação.</li>
+                <li>Manter a assepsia do campo cirúrgico.</li>
+                <li>Monitorar a paciente (sinais vitais, nível de consciência) sob supervisão do enfermeiro.</li>
+                <li>Fornecer materiais estéreis ao cirurgião, conforme solicitado.</li>
+              </ul>
+            </li>
+            <li><strong>Pós-operatório:</strong>
+              <ul>
+                <li>Monitorar a recuperação na sala de recuperação pós-anestésica (SRPA): sinais vitais, nível de dolor, sangramentos.</li>
+                <li>Administrar medicações conforme prescrição (analgésicos, antieméticos).</li>
+                <li>Auxiliar na mobilização e conforto da paciente.</li>
+                <li>Observar a área cirúrgica para sinais de complicações iniciais.</li>
+                <li>Garantir o conforto térmico e a privacidade da paciente.</li>
+              </ul>
+            </li>
+          </ul>
+          <p>A atenção e o cuidado do técnico de enfermagem são vitais para a segurança e a recuperação bem-sucedida das pacientes.</p>
+        </div>
+      </section>
+
+      <section id="cuidados-enfermagem">
+        <h2>Cuidados de Enfermagem Específicos</h2>
+        <div class="card card-list-style">
+          <span class="focus-point">🩹 CUIDADOS HOLÍSTICOS PARA UMA RECUPERAÇÃO SEGURA E EFICAZ 🩹</span>
+          <p>Os cuidados de enfermagem em CGFs são cruciais e abrangem diversas áreas para assegurar a recuperação completa e o bem-estar da paciente:</p>
+          <ul>
+            <li><strong>Higiene e Prevenção de Infecções:</strong>
+              <ul>
+                <li>Manter higiene adequada da área genital com água morna e sabão neutro, conforme orientação médica, evitando fricção excessiva.</li>
+                <li>Realizar curativos conforme a técnica asséptica e frequência indicada, observando sinais de infecção.</li>
+              </ul>
+            </li>
+            <li><strong>Conforto e Mobilização:</strong>
+              <ul>
+                <li>Evitar o uso de roupas apertadas ou justas para prevenir irritações e facilitar a circulação na área operada.</li>
+                <li>Auxiliar na mobilização precoce (caminhada leve) conforme liberação médica, prevenindo complicações como trombose.</li>
+              </ul>
+            </li>
+            <li><strong>Manejo da Dor e Medicação:</strong>
+              <ul>
+                <li>Utilizar medicações prescritas (analgésicos, anti-inflamatórios, antibióticos) conforme orientação médica para controle da dolor e prevenção de infecções.</li>
+                <li>Monitorar a eficácia da medicação e relatar ao enfermeiro/médico qualquer dolor persistente ou intensa.</li>
+              </ul>
+            </li>
+            <li><strong>Dieta e Hidratação:</strong>
+              <ul>
+                <li>Manter uma dieta equilibrada e hidratação adequada para auxiliar no processo de recuperação do corpo e funcionamento intestinal.</li>
+              </ul>
+
+            </li>
+            <li><strong>Restrições de Atividade:</strong>
+              <ul>
+                <li>Abster-se de relações sexuais pelo período recomendado pelo cirurgião (geralmente 6 a 8 semanas ou mais), para garantir a cicatrização completa e evitar complicações.</li>
+                <li>Evitar esforço físico intenso, levantamento de peso e atividades que possam aumentar a pressão abdominal, como agachamentos ou abdominais.</li>
+              </ul>
+            </li>
+            <li><strong>Acompanhamento e Monitoramento:
+              <ul>
+                <li>Comparecer a todas as consultas de retorno para acompanhamento da cicatrização e remoção de pontos, se necessário.</li>
+                <li>Observar atentamente quaisquer sinais de complicação: vermelhidão intensa, dolor crescente, inchaço excessivo, secreção purulenta, febre, náuseas persistentes, dificuldade para urinar/evacuar, e comunicar o médico/enfermeiro imediatamente.</li>
+              </ul>
+            </li>
+          </ul>
+          <p>O cuidado de enfermagem é fundamental para uma recuperação segura e o retorno da paciente às suas suas atividades diárias com qualidade de vida.</p>
+        </div>
+      </section>
+
+      <section id="complicacoes">
+        <h2>Complicações e Intercorrências Possíveis</h2>
+        <div class="card card-list-style">
+          <span class="focus-point">⚠️ SINAIS DE ALERTA E CUIDADOS NECESSÁRIOS ⚠️</span>
+          <p>Embora as CGFs sejam geralmente seguras, como qualquer procedimento cirúrgico, elas podem apresentar complicações e intercorrências. O reconhecimento precoce é fundamental para um bom prognóstico.</p>
+          <ul>
+            <li><strong>Infecção:</strong>
+              <ul>
+                <li>Sinais: vermelhidão, inchaço, calor local, dor intensa, secreção purulenta na incisão, febre.</li>
+                <li>Cuidados: higiene rigorosa, uso de antibióticos conforme prescrição.</li>
+              </ul>
+            </li>
+            <li><strong>Hemorragia/Hematoma:</strong>
+              <ul>
+                <li>Sinais: sangramento excessivo na incisão, formação de inchaço arroxeado ou endurecido, dolor intensa.</li>
+                <li>Cuidados: compressão local, monitoramento de sangramento, comunicação imediata ao médico.</li>
+              </ul>
+            </li>
+            <li><strong>Deiscência de Sutura (abertura dos pontos):</strong>
+              <ul>
+                <li>Sinais: Abertura da incisão cirúrgica, exposição de tecidos internos.</li>
+                <li>Cuidados: Manter a área limpa e coberta com curativo estéril, procurar atendimento médico urgente.</li>
+              </ul>
+            </li>
+            <li><strong>Alteração da Sensibilidade:</strong>
+              <ul>
+                <li>Sinais: Dormência, diminuição ou aumento da sensibilidade na área operada.</li>
+                <li>Cuidados: Geralmente temporário, mas deve ser monitorado e comunicado ao médico.</li>
+              </ul>
+            </li>
+            <li><strong>Dor Crônica ou Dispareunia (dor na relação sexual):</strong>
+              <ul>
+                <li>Sinais: Dor persistente na região, dolor ou desconforto durante as relações sexuais.</li>
+                <li>Cuidados: Avaliação médica para identificar a causa e definir tratamento.</li>
+              </ul>
+            </li>
+            <li><strong>Formação de Cicatriz Inestética (Quelóide/Hipertrófica):</strong>
+              <ul>
+                <li>Sinais: Cicatriz elevada, espessa, com coceira ou dolor, de coloração alterada.</li>
+                <li>Cuidados: Tratamentos específicos como compressão, pomadas ou procedimentos a laser podem ser indicados.</li>
+              </ul>
+            </li>
+            <li><strong>Complicações Relacionadas à Anestesia:</strong>
+              <ul>
+                <li>Sinais: Náuseas, vômitos, tontura, reações alérgicas.</li>
+                <li>Cuidados: Monitoramento pós-anestésico na SRPA, administração de antieméticos.</li>
+              </ul>
+            </li>
+          </ul>
+          <p>O técnico de enfermagem tem um papel essencial na observação e comunicação de quaisquer sinais de complicações, contribuindo para a rápida intervenção e segurança da paciente.</p>
+        </div>
+      </section>
+
+      <!-- Game Section -->
+      <section id="game">
+          <div id="game-container">
+              <h2>🎮 Adivinhe a Cirurgia! 🧠</h2>
+              <!-- New section for player name input -->
+              <div id="player-names-input">
+                  <p>Insira os nomes dos jogadores (até 5):</p>
+                  <input type="text" id="player1-name" placeholder="Jogador 1" maxlength="20" />
+                  <input type="text" id="player2-name" placeholder="Jogador 2" maxlength="20" />
+                  <input type="text" id="player3-name" placeholder="Jogador 3" maxlength="20" />
+                  <input type="text" id="player4-name" placeholder="Jogador 4" maxlength="20" />
+                  <input type="text" id="player5-name" placeholder="Jogador 5" maxlength="20" />
+              </div>
+              
+              <button id="start-game-btn">COMEÇAR O JOGO</button>
+              <p id="game-progress"></p> 
+              <p id="current-player-score"></p> <!-- New element for current player's score -->
+              <p id="question-clue">Carregando pergunta...</p> 
+              <div id="options-container">
+                  <button class="option-btn" data-option="0">Opção 1</button>
+                  <button class="option-btn" data-option="1">Opção 2</button>
+                  <button class="option-btn" data-option="2">Opção 3</button>
+              </div>
+              <p id="feedback"></p> 
+              <button id="next-question-btn">Próxima Pergunta</button> 
+              <button id="restart-game-btn">Reiniciar Jogo</button> 
+
+              <!-- New element to display final scores -->
+              <div id="score-display">
+                  <h3>🏆 Pontuação Final - Vencedor da Caixa de Bombons! 🏆</h3>
+                  <ul id="final-scores-list"></ul>
+              </div>
+          </div>
+      </section>
+
+    </main>
+
+    <footer>
+      &copy; 2025 Cirurgias Genitais Femininas - Todos os direitos reservados
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="scrollToTopBtn" title="Voltar ao Topo">🔝</button>
+
+    <!-- Image Modal (Lightbox) Structure -->
+    <div id="image-modal">
+      <img id="modal-image" src="" alt="Imagem Ampliada" />
+      <button id="modal-close-btn">✖</button>
+    </div>
+  </div> <!-- End of #site-content -->
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      const splashScreen = document.getElementById('splash-screen');
+      const startButton = document.getElementById('start-button');
+      const siteContent = document.getElementById('site-content');
+
       const sections = document.querySelectorAll('section');
       const navLinks = document.querySelectorAll('nav ul li a');
       const header = document.querySelector('header');
-      const main = document.querySelector('main');
+      const main = document.querySelector('main'); /* Note: 'main' is now inside 'site-content' */
 
       // Game Elements
       const startGameBtn = document.getElementById('start-game-btn');
@@ -1296,14 +1405,35 @@
           // Game state will be reset when startGame is called again
       }
 
+      // --- Splash Screen Logic ---
+      startButton.addEventListener('click', () => {
+          splashScreen.classList.add('fade-out');
+          siteContent.classList.add('visible'); // Make main content visible immediately
+          
+          // After the fade-out transition, completely hide the splash screen
+          splashScreen.addEventListener('transitionend', function handler() {
+              splashScreen.style.display = 'none';
+              splashScreen.removeEventListener('transitionend', handler); // Remove listener to prevent multiple calls
+              adjustMainPadding(); // Adjust padding after header is fully rendered and visible
+          });
+      });
+
       // --- General Site Logic ---
 
       // Function to adjust main content top padding based on header height
       function adjustMainPadding() {
-          main.style.paddingTop = `${header.offsetHeight + 20}px`;
+          // Only adjust if siteContent is visible (i.e., after splash screen)
+          if (siteContent.classList.contains('visible')) {
+              document.body.style.paddingTop = `${header.offsetHeight + 20}px`;
+          } else {
+              document.body.style.paddingTop = `0`; // No padding when splash screen is active
+          }
       }
 
-      window.addEventListener('load', adjustMainPadding);
+      // Initial call to adjust padding if the splash screen is already handled (e.g., direct navigation)
+      // Or, it will be called after the start button is clicked.
+      adjustMainPadding(); // Call once on load
+
       window.addEventListener('resize', adjustMainPadding);
 
       // Intersection Observer setup
@@ -1358,7 +1488,15 @@
           });
       }
       
-      setupIntersectionObserver(); 
+      // Setup observer only after site content is visible
+      if (siteContent.classList.contains('visible')) {
+          setupIntersectionObserver();
+      } else {
+          // If splash screen is active, setup observer after it fades
+          startButton.addEventListener('click', () => {
+              setTimeout(setupIntersectionObserver, 800); // Delay to ensure fade-out completes
+          });
+      }
 
       // Smooth navigation with fixed header compensation
       navLinks.forEach(link => {
@@ -1428,7 +1566,8 @@
       });
 
       // Initial page load logic (already called by DOMContentLoaded for observer)
-      window.addEventListener('load', adjustMainPadding);
+      // No initial call to adjustMainPadding here, as splash screen is active
+      // window.addEventListener('load', adjustMainPadding); // Removed from here
 
       // Image Modal Functionality
       clickableImages.forEach(image => {
