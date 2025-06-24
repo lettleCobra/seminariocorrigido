@@ -155,7 +155,7 @@
       opacity: 0; /* Starts invisible for animation */
       transform: translateY(40px); /* Starts slightly below for animation */
       transition: opacity 0.7s ease-out, transform 0.7s ease-out; /* Optimized transition, slightly faster */
-      scroll-margin-top: 100px; /* Adjusts top margin to compensate for fixed header on scroll */
+      scroll-margin-top: 150px; /* IMPORTANT: Increased to ensure title is visible below fixed header */
       border-radius: 20px; /* Rounded borders for sections */
       padding: 30px; /* Adds internal padding to sections */
       background: #ffffff; /* Ensures section has its own white background */
@@ -687,18 +687,41 @@
         padding-top: 75px; 
       }
       header {
-        min-height: 65px;
+        min-height: auto; /* Allow header height to adjust */
+        flex-direction: column; /* Stack logo and nav vertically */
+        justify-content: center; /* Center content vertically */
+        align-items: center; /* Center content horizontally */
+        padding: 10px 1rem; /* More padding for smaller screens */
+      }
+      nav {
+        flex-direction: column; /* Stack logo and nav links vertically */
+        align-items: center; /* Center all navigation items */
+        padding: 0 1rem; /* Adjust nav padding */
+        width: 100%; /* Important: ensure nav itself takes full width */
       }
       nav .logo {
         font-size: 1.8rem;
+        white-space: normal; /* Allow logo text to wrap */
+        text-align: center; /* Center logo text */
+        width: 100%; /* Ensure logo takes full available width for centering */
+        margin-bottom: 10px; /* Space between logo and nav links */
       }
       nav ul {
-        gap: 1rem;
-        justify-content: center; 
+        flex-direction: column; /* Stack links vertically */
+        align-items: center; /* Center each link */
+        width: 100%; /* Links container takes full width */
+        gap: 0.8rem; /* Slightly reduced gap for tighter packing */
+      }
+      nav ul li {
+        white-space: normal; /* Allow list items (buttons) to wrap if needed */
+        width: 100%; /* Each link button takes full width */
+        text-align: center; /* Center text within each link button */
       }
       nav ul li a {
         padding: 0.5rem 1rem;
         font-size: 0.9em;
+        width: 100%; /* Ensure the link itself takes full width for centering */
+        box-sizing: border-box; /* Include padding in width */
       }
       main {
         padding: 25px 1.5rem;
@@ -729,19 +752,14 @@
 
     @media (max-width: 480px) { 
       body {
-        padding-top: 110px; 
-      }
-      nav {
-        flex-direction: column; 
-        align-items: center; 
+        padding-top: 110px; /* Adjust based on new header height */
       }
       nav .logo {
-        margin-bottom: 10px; 
+        font-size: 1.5rem; /* Further reduce logo size for very small screens */
+        line-height: 1.2; /* Adjust line height for wrapped text */
       }
       nav ul {
-        flex-direction: column; 
-        align-items: center; 
-        width: 100%; 
+        gap: 0.6rem; /* Even tighter packing for very small screens */
       }
       nav ul li a {
         padding: 0.4rem 0.8rem;
@@ -763,67 +781,11 @@
           padding: 14px 17px;
           font-size: 1.3em;
       }
-      /* Ensure score display list items stack properly on small screens */
       #score-display ul li {
           width: 90%;
-          margin: 0 auto 10px; /* Center and add vertical margin */
+          margin: 0 auto 10px;
           display: block;
       }
-    }
-
-    /* Image Modal (Lightbox) Styles */
-    #image-modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.7); /* Slightly lighter and softer overlay for contrast */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999; 
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.4s ease-out, visibility 0.4s ease-out; /* Optimized transition */
-    }
-
-    #image-modal.active {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    #modal-image {
-        max-width: 90%; 
-        max-height: 90%;
-        object-fit: contain; 
-        border-radius: 15px; 
-        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); /* Slightly reduced shadow */
-        transform: scale(0.8); /* Starts smaller for a more dramatic "pop-in" effect */
-        transition: transform 0.3s ease-out; /* Optimized transition */
-    }
-    #image-modal.active #modal-image {
-        transform: scale(1); /* Expands to normal size */
-    }
-
-    #modal-close-btn {
-        position: absolute;
-        top: 25px; 
-        right: 30px; 
-        color: white;
-        font-size: 2.8em; 
-        cursor: pointer;
-        background: none;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 5px;
-        transition: color 0.2s ease, transform 0.2s ease;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.5); 
-    }
-
-    #modal-close-btn:hover {
-        color: #ffccbc; /* Light peach on hover for accent */
-        transform: rotate(180deg) scale(1.05); /* Slightly reduced scale */
     }
   </style>
 </head>
@@ -846,7 +808,7 @@
     <section id="introducao" class="visible">
       <h2>Introdução às Cirurgias Genitais Femininas</h2>
       <div class="card">
-        <img src="https://www.cirurgiaestetica.com.br/wp-content/uploads/2018/10/cirurgia-intima-mulheres.jpg.webp" alt="Profissional de saúde feminina examinando paciente, simbolizando o cuidado em saúde da mulher." />
+        <img src="https://images.unsplash.com/photo-1579684385157-fc79412f8a4e?auto=format&fit=crop&w=600&q=80" alt="Profissional de saúde feminina examinando paciente, simbolizando o cuidado em saúde da mulher." />
         <div>
           <span class="focus-point">🌟 Desvendando um Campo Essencial da Saúde da Mulher 🌟</span>
           <p>As <strong>Cirurgias Genitais Femininas (CGFs)</strong> compreendem um conjunto de procedimentos cirúrgicos ginecológicos focados na região genital feminina, abordando desde aspectos funcionais e de saúde até questões estéticas e de bem-estar psicológico. Nesta apresentação, mergulharemos nos diversos tipos de CGFs, suas indicações clínicas mais comuns e a importância de uma abordagem informada e humanizada.</p>
@@ -863,20 +825,20 @@
         <img src="https://dramarianaamalia.com.br/wp-content/uploads/2024/02/Imagem-do-WhatsApp-de-2024-02-23-as-10.07.09_727b1365-1.jpg" alt="Ilustração da anatomia da cavidade vaginal, destacando áreas de reconstrução em uma vaginoplastia." />
         <div>
           <span class="focus-point">✨ VAGINOPLASTIA: Reconstrução e Rejuvenescimento Vaginal ✨</span>
-          <p>A <strong>Vaginoplastia</strong>, ou Plástica da Cavidade Vaginal, é um procedimento que visa reconstruir a anatomia e a funcionalidade do canal vulvo-vaginal. É comumente indicada para mulheres que experimentam frouxidão vaginal, um problema que pode surgir após múltiplos partos normais, envelhecimento natural ou perda significativa de peso. O principal objetivo é o <strong>estreitamento da vagina</strong>, melhorando o tônus muscular e a sensação durante a relação sexual, além de corrigir prolapsos leves de órgãos pélvicos. Também pode ser procurada para fins de rejuvenescimento vaginal e para aumentar a autoestima e o conforto íntimo.</p>
+          <p>A <strong>Vaginoplastia</strong>, ou Plástica da Cavidade Vaginal, é um procedimento que visa reconstruir a anatomia e a funcionalidade do canal vulvo-vaginal. É comumente indicada para mulheres que experimentam frouxidão vaginal, um problema que pode surgir após múltiplos partos normais, envelhecimento natural ou perda significativa de peso. O principal objetivo é o **estreitamento da vagina**, melhorando o tônus muscular e a sensação durante a relação sexual, além de corrigir prolapsos leves de órgãos pélvicos. Também pode ser procurada para fins de rejuvenescimento vaginal e para aumentar a autoestima e o conforto íntimo.</p>
         </div>
       </div>
 
       <div class="card">
-        <img src="" alt="Representação 3D da anatomia feminina com foco no clitóris, ilustrando o campo de atuação da clitoroplastia." />
+        <img src="https://img.freepik.com/fotos-premium/representacao-3d-da-anatomia-feminina-vista-do-clitoris_941097-360.jpg?w=740" alt="Representação 3D da anatomia feminina com foco no clitóris, ilustrando o campo de atuação da clitoroplastia." />
         <div>
           <span class="focus-point">💖 CLITOROPLASTIA: Remodelagem com Preservação da Sensibilidade 💖</span>
-          <p>A <strong>Clitoroplastia</strong> é uma cirurgia altamente especializada que visa remodelar o clitóris. As indicações mais comuns incluem a redução do tamanho do clitóris (em casos de hipertrofia clitoriana, que pode causar desconforto físico, irritação com roupas e impacto na autoestima), ou a correção de anomalias congênitas. O grande desafio e prioridade deste procedimento é <strong>preservar a sensibilidade e a função sexual</strong> intactas. A cirurgia é realizada com extrema delicadeza, minimizando o impacto nos nervos e vasos sanguíneos cruciais para o prazer sexual, buscando uma harmonia estética e funcional para a paciente.</p>
+          <p>A <strong>Clitoroplastia</strong> é uma cirurgia altamente especializada que visa remodelar o clitóris. As indicações mais comuns incluem a redução do tamanho do clitóris (em casos de hipertrofia clitoriana, que pode causar desconforto físico, irritação com roupas e impacto na autoestima), ou a correção de anomalias congênitas. O grande desafio e prioridade deste procedimento é **preservar a sensibilidade e a função sexual** intactas. A cirurgia é realizada com extrema delicadeza, minimizando o impacto nos nervos e vasos sanguíneos cruciais para o prazer sexual, buscando uma harmonia estética e funcional para a paciente.</p>
         </div>
       </div>
 
       <div class="card">
-        <img src="https://grupoelas.com.br/wp-content/uploads/2021/05/himenoplastia-2.jpg" alt="Ilustração da anatomia vaginal destacando o hímen e suas estruturas, relevante para o procedimento de himenoplastia." />
+        <img src="https://img.freepik.com/vetores-premium/anatomia-vaginal_23-2148782393.jpg?w=740" alt="Ilustração da anatomia vaginal destacando o hímen e suas estruturas, relevante para o procedimento de himenoplastia." />
         <div>
           <span class="focus-point">🌸 HIMENOPLASTIA: Reconstrução do Hímen 🌸</span>
           <p>A <strong>Himenoplastia</strong> é a reconstrução cirúrgica do hímen, uma membrana que pode ter sido rompida por diversas razões, não apenas relacionadas à atividade sexual. Este procedimento é frequentemente procurado por mulheres por motivos culturais, religiosos, sociais ou pessoais, que buscam restaurar a integridade do hímen. A técnica envolve a sutura cuidadosa dos remanescentes himenais ou tecidos próximos para recriar uma membrana que se assemelhe ao hímen original. É um procedimento de curta duração e pode ser realizado sob anestesia local, oferecendo às pacientes a restauração física e emocional desejada.</p>
@@ -884,10 +846,10 @@
       </div>
 
       <div class="card" id="ninfoplastia">
-        <img src="https://cdn-ilahpph.nitrocdn.com/AHdZesSudTWvvLsyomlAkDpdNIwwPTvr/assets/images/optimized/rev-67e93e6/drafernandatorras.com.br/wp-content/uploads/2025/03/ninfoplastia-valor.webp" alt="Ilustração de antes e depois da Ninfoplastia (Labioplastia), mostrando a redução dos pequenos lábios." />
+        <img src="https://placehold.co/600x400/f7c6d0/5a3e5d?text=Ninfoplastia%0a(Labioplastia)" alt="Ilustração de antes e depois da Ninfoplastia (Labioplastia), mostrando a redução dos pequenos lábios." />
         <div>
           <span class="focus-point">🌟 NINFOPLASTIA (Labioplastia): Remodelagem dos Pequenos Lábios 🌟</span>
-          <p>A <strong>Ninfoplastia</strong>, também amplamente conhecida como Labioplastia, é um dos procedimentos de Cirurgia Genital Feminina mais procurados. Seu principal objetivo é <strong>reduzir o tamanho ou corrigir a assimetria dos pequenos lábios vaginais</strong>. Este excesso de tecido pode causar desconforto físico (atrito com roupas, dor durante atividades físicas ou sexuais) e impactar a autoestima da mulher.</p>
+          <p>A <strong>Ninfoplastia</strong>, também amplamente conhecida como Labioplastia, é um dos procedimentos de Cirurgia Genital Feminina mais procurados. Seu principal objetivo é **reduzir o tamanho ou corrigir a assimetria dos pequenos lábios vaginais**. Este excesso de tecido pode causar desconforto físico (atrito com roupas, dor durante atividades físicas ou sexuais) e impactar a autoestima da mulher.</p>
           <p>A cirurgia visa proporcionar um contorno mais harmonioso e confortável, melhorando a qualidade de vida e a confiança. É um procedimento que exige precisão para manter a funcionalidade e a sensibilidade da região.</p>
         </div>
       </div>
@@ -934,7 +896,7 @@
     <section id="cuidados-enfermagem">
       <h2>Cuidados de Enfermagem Específicos</h2>
       <div class="card card-list-style">
-        <span class="focus-point">🩹 CUIDADOS HOLÍSTICOS PARA UMA RECUPERAÇÃO SEGURA E EFICAZ 🩹</span>
+        <span class="focus-point">� CUIDADOS HOLÍSTICOS PARA UMA RECUPERAÇÃO SEGURA E EFICAZ 🩹</span>
         <p>Os cuidados de enfermagem em CGFs são cruciais e abrangem diversas áreas para assegurar a recuperação completa e o bem-estar da paciente:</p>
         <ul>
           <li><strong>Higiene e Prevenção de Infecções:</strong>
@@ -951,7 +913,7 @@
           </li>
           <li><strong>Manejo da Dor e Medicação:</strong>
             <ul>
-              <li>Utilizar medicações prescritas (analgésicos, anti-inflamatórios, antibióticos) conforme orientação médica para controle da dor e prevenção de infecções.</li>
+              <li>Utilizar medicações prescritas (analgésicos, anti-inflamatórios, antibióticos) conforme orientação médica para controle da dolor e prevenção de infecções.</li>
               <li>Monitorar a eficácia da medicação e relatar ao enfermeiro/médico qualquer dolor persistente ou intensa.</li>
             </ul>
           </li>
@@ -974,7 +936,7 @@
             </ul>
           </li>
         </ul>
-        <p>O cuidado de enfermagem é fundamental para uma recuperação segura e o retorno da paciente às suas atividades diárias com qualidade de vida.</p>
+        <p>O cuidado de enfermagem é fundamental para uma recuperação segura e o retorno da paciente às suas suas atividades diárias com qualidade de vida.</p>
       </div>
     </section>
 
@@ -1010,7 +972,7 @@
           </li>
           <li><strong>Dor Crônica ou Dispareunia (dor na relação sexual):</strong>
             <ul>
-              <li>Sinais: Dor persistente na região, dor ou desconforto durante as relações sexuais.</li>
+              <li>Sinais: Dor persistente na região, dolor ou desconforto durante as relações sexuais.</li>
               <li>Cuidados: Avaliação médica para identificar a causa e definir tratamento.</li>
             </ul>
           </li>
@@ -1231,9 +1193,11 @@
               btn.disabled = true; 
               if (btn.textContent === correctAnswer) {
                   btn.style.backgroundColor = '#43a047'; 
+                  btn.style.boxSizing = 'border-box'; /* Ensure padding doesn't push it out */
                   btn.style.boxShadow = '0 0 15px rgba(67, 160, 71, 0.3)'; 
               } else if (btn.textContent === selectedOption) {
                   btn.style.backgroundColor = '#e53935'; 
+                  btn.style.boxSizing = 'border-box'; /* Ensure padding doesn't push it out */
               }
           });
 
@@ -1380,7 +1344,6 @@
                           feedbackElement.style.display = 'none';
                           nextQuestionBtn.style.display = 'none';
                           restartGameBtn.style.display = 'none';
-                          gameProgressElement.style.display = 'none';
                           currentPlayerScoreElement.style.display = 'none';
                           scoreDisplay.style.display = 'none'; 
                       }
